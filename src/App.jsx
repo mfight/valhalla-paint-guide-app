@@ -66,6 +66,7 @@ const allUnits = buildingData.flatMap(building => {
   });
 });
 
+// Updated UnitListItem component with proper dark mode styling
 const UnitListItem = memo(({ unit, onSelect, hoveredSwatch, onSwatchHover, onSwatchLeave }) => (
   <Card variant="listItem" onClick={() => onSelect(unit)}>
     <Card.Header hasActions>
@@ -75,11 +76,14 @@ const UnitListItem = memo(({ unit, onSelect, hoveredSwatch, onSwatchHover, onSwa
       </div>
       <Card.Actions position="header">
         <div className="text-center">
-          <div className="text-sm font-medium text-gray-700 mb-1">{unit.colorScheme}</div>
+          {/* Fixed: Use CSS variable instead of hardcoded text-gray-300 */}
+          <Card.Subtitle className="text-sm font-medium mb-1 text-center">
+            {unit.colorScheme}
+          </Card.Subtitle>
           <div className="flex space-x-1">
             <ColorSwatch 
               paintInfo={unit.paintCodes.bodyPrimary} 
-              label="Body Secondary"
+              label="Body Primary"
               size="medium"
               onHover={() => onSwatchHover(`${unit.id}-primary`)}
               onLeave={onSwatchLeave}
