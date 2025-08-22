@@ -1,0 +1,183 @@
+/* components/ui/Icon/Icon.module.scss */
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: $transition-base;
+  
+  // Ensure SVG icons fill the container
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Color variants with override support
+.colorDefault {
+  color: var(--icon-light-override, var(--icon-color, #{$gray-400}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-color-dark, #{$gray-500}));
+  }
+}
+
+.colorPrimary {
+  color: var(--icon-light-override, var(--icon-primary, #{$primary}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-primary-dark, #{$blue-400}));
+  }
+}
+
+.colorSecondary {
+  color: var(--icon-light-override, var(--icon-secondary, #{$gray-600}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-secondary-dark, #{$gray-400}));
+  }
+}
+
+.colorSuccess {
+  color: var(--icon-light-override, var(--icon-success, #{$success}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-success-dark, #34d399));
+  }
+}
+
+.colorWarning {
+  color: var(--icon-light-override, var(--icon-warning, #{$warning}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-warning-dark, #fbbf24));
+  }
+}
+
+.colorError {
+  color: var(--icon-light-override, var(--icon-error, #{$error}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-error-dark, #f87171));
+  }
+}
+
+.colorMuted {
+  color: var(--icon-light-override, var(--icon-muted, #{$gray-400}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-muted-dark, #{$gray-400}));
+  }
+}
+
+.colorInverse {
+  color: var(--icon-light-override, var(--icon-inverse, #{$white}));
+  
+  @include dark-mode {
+    color: var(--icon-dark-override, var(--icon-inverse-dark, #{$gray-900}));
+  }
+}
+
+// Size variants using design system spacing scale
+.size2xs {
+  width: $spacing-2;    // 0.5rem (8px)
+  height: $spacing-2;
+}
+
+.sizexs {
+  width: $spacing-3;    // 0.75rem (12px)
+  height: $spacing-3;
+}
+
+.sizesm {
+  width: $spacing-4;    // 1rem (16px)
+  height: $spacing-4;
+}
+
+.sizemd {
+  width: $spacing-5;    // 1.25rem (20px)
+  height: $spacing-5;
+}
+
+.sizelg {
+  width: $spacing-6;    // 1.5rem (24px)
+  height: $spacing-6;
+}
+
+.sizexl {
+  width: $spacing-8;    // 2rem (32px)
+  height: $spacing-8;
+}
+
+.size2xl {
+  width: $spacing-10;   // 2.5rem (40px)
+  height: $spacing-10;
+}
+
+.size3xl {
+  width: $spacing-12;   // 3rem (48px)
+  height: $spacing-12;
+}
+
+// Interactive states
+.interactive {
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &:focus {
+    @include focus-ring(var(--icon-focus-ring, #{$primary}), 2px);
+    border-radius: $radius-sm;
+  }
+  
+  &:active {
+    opacity: 0.6;
+  }
+  
+  @include reduced-motion {
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+  }
+}
+
+// Disabled state
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Rotation animations
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

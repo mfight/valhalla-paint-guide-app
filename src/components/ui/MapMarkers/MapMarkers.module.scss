@@ -1,0 +1,161 @@
+/* components/ui/MapMarkers/MapMarkers.module.scss */
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+// Badge Marker (circular with count/text)
+.badgeMarker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-full;
+  border: 2px solid var(--marker-border-color, var(--marker-light-color, #{$white}));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: $font-weight-bold;
+  color: var(--marker-text-color, var(--marker-light-color, #{$white}));
+  background-color: var(--marker-badge-color, #{$error});
+  transition: $transition-base;
+  
+  &:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  @include reduced-motion {
+	&:hover {
+	  transform: none;
+	}
+  }
+}
+
+// Badge sizes
+.badgeSizeSm {
+  width: $spacing-6;   // 24px
+  height: $spacing-6;
+  font-size: $font-size-xs;
+}
+
+.badgeSizeMd {
+  width: $spacing-8;   // 32px
+  height: $spacing-8;
+  font-size: $font-size-sm;
+}
+
+.badgeSizeLg {
+  width: $spacing-10;  // 40px
+  height: $spacing-10;
+  font-size: $font-size-base;
+}
+
+.badgeSizeXl {
+  width: $spacing-12;  // 48px
+  height: $spacing-12;
+  font-size: $font-size-lg;
+}
+
+// Pin Marker (teardrop/pin shape)
+.pinMarker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pinShape {
+  background-color: var(--marker-badge-color, #{$error});
+  border: 2px solid var(--marker-border-color, var(--marker-light-color, #{$white}));
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: $transition-base;
+  
+  .pinMarker:hover & {
+	transform: rotate(-45deg) translateY(-1px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  @include reduced-motion {
+	.pinMarker:hover & {
+	  transform: rotate(-45deg);
+	}
+  }
+}
+
+.pinDot {
+  position: absolute;
+  background-color: var(--marker-text-color, var(--marker-light-color, #{$white}));
+  border-radius: $radius-full;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Pin sizes
+.pinSizeSm {
+  width: $spacing-5;   // 20px
+  height: $spacing-6;  // 24px
+  
+  .pinShape {
+	width: $spacing-4;   // 16px
+	height: $spacing-4;
+  }
+  
+  .pinDot {
+	width: $spacing-1;   // 4px
+	height: $spacing-1;
+  }
+}
+
+.pinSizeMd {
+  width: $spacing-6;   // 24px
+  height: $spacing-8;  // 32px
+  
+  .pinShape {
+	width: $spacing-5;   // 20px
+	height: $spacing-5;
+  }
+  
+  .pinDot {
+	width: $spacing-2;   // 8px
+	height: $spacing-2;
+  }
+}
+
+.pinSizeLg {
+  width: $spacing-8;   // 32px  
+  height: $spacing-10; // 40px
+  
+  .pinShape {
+	width: $spacing-6;   // 24px
+	height: $spacing-6;
+  }
+  
+  .pinDot {
+	width: $spacing-2;   // 8px
+	height: $spacing-2;
+  }
+}
+
+.pinSizeXl {
+  width: $spacing-10;  // 40px
+  height: $spacing-12; // 48px
+  
+  .pinShape {
+	width: $spacing-8;   // 32px
+	height: $spacing-8;
+  }
+  
+  .pinDot {
+	width: $spacing-3;   // 12px
+	height: $spacing-3;
+  }
+}
+
+// Global marker color variables for light/dark mode support
+:root {
+  --marker-light-color: #{$white};
+  
+  @include dark-mode {
+	--marker-light-color: #{$white}; // Still white in dark mode for contrast
+  }
+}

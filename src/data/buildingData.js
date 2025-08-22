@@ -2,6 +2,7 @@ export const buildingData = [
 {
 	id: 'building-1',
 	buildingType: 'Keys',
+	coordinates: [27.90683638883428, -82.3374533135049],
 	units: [{ 
 		id: 301, 
 		streetNumber: 'Building 1',
@@ -9,13 +10,14 @@ export const buildingData = [
 		city: 'Riverview',
 		state: 'FL',
 		zipCode: '33578',
-		coordinates: [27.902664066988937, -82.33930085713197],
+		// coordinates: [27.902664066988937, -82.33930085713197],
 		colorSchemeId: 'Keys 6A'
 	}]
 },
 {
 	id: 'building-2',
 	buildingType: 'Keys',
+	coordinates: [27.907213605513345, -82.33745056513511],
 	units: [{ 
 		id: 304, 
 		streetNumber: 'Building 2',
@@ -23,13 +25,14 @@ export const buildingData = [
 		city: 'Riverview',
 		state: 'FL',
 		zipCode: '33578',
-		coordinates: [27.902664066988937, -82.33930085713197],
+		// coordinates: [27.902664066988937, -82.33930085713197],
 		colorSchemeId: 'Keys 8A'
 	}]
 },
 {
 	id: 'building-3',
 	buildingType: 'Keys',
+	coordinates: [27.90755277545143, -82.33744690117489],
 	units: [{ 
 		id: 305, 
 		streetNumber: 'Building 3',
@@ -37,13 +40,14 @@ export const buildingData = [
 		city: 'Riverview',
 		state: 'FL',
 		zipCode: '33578',
-		coordinates: [27.902664066988937, -82.33930085713197],
+		// coordinates: [27.902664066988937, -82.33930085713197],
 		colorSchemeId: 'Keys 8B'
 	}]
 },
 {
 	id: 'building-4',
 	buildingType: 'Keys',
+	coordinates: [27.907624819293453, -82.33708691275879],
 	units: [{ 
 		id: 307, 
 		streetNumber: 'Building 4',
@@ -51,13 +55,14 @@ export const buildingData = [
 		city: 'Riverview',
 		state: 'FL',
 		zipCode: '33578',
-		coordinates: [27.902664066988937, -82.33930085713197],
+		// coordinates: [27.902664066988937, -82.33930085713197],
 		colorSchemeId: 'Keys 6C'
 	}]
 },
 {
 	id: 'building-5',
 	buildingType: 'Keys',
+	coordinates: [27.907623200372566, -82.33670860422217],
 	units: [{ 
 		id: 310, 
 		streetNumber: 'Building 5',
@@ -65,13 +70,14 @@ export const buildingData = [
 		city: 'Riverview',
 		state: 'FL',
 		zipCode: '33578',
-		coordinates: [27.902664066988937, -82.33930085713197],
+		// coordinates: [27.902664066988937, -82.33930085713197],
 		colorSchemeId: 'Keys 8D'
 	}]
 },
 {
 	id: 'building-6',
 	buildingType: 'Keys',
+	coordinates: [27.907619962444503, -82.33635044772862],
 	units: [{ 
 		id: 306, 
 		streetNumber: 'Building 6',
@@ -79,144 +85,154 @@ export const buildingData = [
 		city: 'Riverview',
 		state: 'FL',
 		zipCode: '33578',
-		coordinates: [27.902664066988937, -82.33930085713197],
+		// coordinates: [27.902664066988937, -82.33930085713197],
 		colorSchemeId: 'Keys 8B'
 	}]
 },
 {
 	id: 'building-7',
 	buildingType: 'Keys',
+	coordinates: [27.90801562941421, -82.33694342914383],
 	units: [{ 
-	  id: 308, 
-	  streetNumber: 'Building 7',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6C'
+		id: 308, 
+		streetNumber: 'Building 7',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 6C'
 	}]
-  },
-  {
+},
+{
 	id: 'building-8',
 	buildingType: 'Keys',
+	coordinates: [27.908011706531177, -82.33726395074608],
 	units: [{ 
-	  id: 311, 
-	  streetNumber: 'Building 8',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6D'
+		id: 311, 
+		streetNumber: 'Building 8',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 6D'
 	}]
-  },
-  {
+},
+{
 	id: 'building-9',
 	buildingType: 'Keys',
+	coordinates: [27.908022138758184, -82.33766200749096],
 	units: [{ 
-	  id: 314, 
-	  streetNumber: 'Building 9',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6B'
+		id: 314, 
+		streetNumber: 'Building 9',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 6B'
 	}]
-  },
-  {
+},
+{
 	id: 'building-10',
 	buildingType: 'Keys',
+	coordinates: [27.90802055339338, -82.33812404038935],
 	units: [{ 
-	  id: 302, 
-	  streetNumber: 'Building 10',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6A'
+		id: 302, 
+		streetNumber: 'Building 10',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 6A'
 	}]
-  },
-  {
+},
+{
 	id: 'building-11',
 	buildingType: 'Keys',
+	coordinates: [27.90796075989025, -82.33868544184129],
 	units: [{ 
-	  id: 316, 
-	  streetNumber: 'Building 11',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 8E'
+		id: 316, 
+		streetNumber: 'Building 11',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 8E'
 	}]
-  },
-  {
+},
+{
 	id: 'building-12',
 	buildingType: 'Keys',
+	coordinates: [27.907599240302268, -82.33869081363689],
 	units: [{ 
-	  id: 303, 
-	  streetNumber: 'Building 12',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6A'
+  		id: 303, 
+  		streetNumber: 'Building 12',
+  		streetName: 'Address',
+  		city: 'Riverview',
+  		state: 'FL',
+  		zipCode: '33578',
+  		colorSchemeId: 'Keys 6A'
 	}]
-  },
-  {
+},
+{
 	id: 'building-13',
 	buildingType: 'Keys',
+	coordinates: [27.90720606550226, -82.33867863911007],
 	units: [{ 
-	  id: 317, 
-	  streetNumber: 'Building 13',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 8E'
+		id: 317, 
+		streetNumber: 'Building 13',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 8E'
 	}]
-  },
-  {
+},
+{
 	id: 'building-14',
 	buildingType: 'Keys',
+	coordinates: [27.906827048723233, -82.33868995543799],
 	units: [{ 
-	  id: 309, 
-	  streetNumber: 'Building 14',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6C'
+		id: 309, 
+		streetNumber: 'Building 14',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 6C'
 	}]
-  },
-  {
+},
+{
 	id: 'building-15',
 	buildingType: 'Keys',
+	coordinates: [27.907216065631502, -82.33822598098337],
 	units: [{ 
-	  id: 312, 
-	  streetNumber: 'Building 15',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 6D'
+		id: 312, 
+		streetNumber: 'Building 15',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 6D'
 	}]
-  },
-  {
+},
+{
 	id: 'building-16',
 	buildingType: 'Keys',
+	coordinates: [27.90756407980598, -82.33823390271426],
 	units: [{ 
-	  id: 319, 
-	  streetNumber: 'Building 16',
-	  streetName: 'Address',
-	  city: 'Riverview',
-	  state: 'FL',
-	  zipCode: '33578',
-	  colorSchemeId: 'Keys 8C'
+		id: 319, 
+		streetNumber: 'Building 16',
+		streetName: 'Address',
+		city: 'Riverview',
+		state: 'FL',
+		zipCode: '33578',
+		colorSchemeId: 'Keys 8C'
 	}]
-  },
-  {
+},
+{
 	id: 'building-17',
 	buildingType: 'Keys',
-	coordinates: [27.902664066988937, -82.33930085713197],
+	coordinates: [27.90757308055589, -82.33789214574122],
 	units: [{ 
 		id: 315, 
 		streetNumber: 'Building 17',
@@ -227,11 +243,11 @@ export const buildingData = [
 		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
 		colorSchemeId: 'Keys 6B'
 	}]
-  },
-  {
+},
+{
 	id: 'building-18',
 	buildingType: 'Keys',
-	coordinates: [27.902664066988937, -82.33930085713197],
+	coordinates: [27.907208186931182, -82.33789637943981],
 	units: [{ 
 		id: 313, 
 		streetNumber: 'Building 18',
@@ -242,11 +258,11 @@ export const buildingData = [
 		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
 		colorSchemeId: 'Keys 6D'
 	}]
-  },
-  {
+},
+{
 	id: 'building-19',
 	buildingType: 'Keys',
-	coordinates: [27.902664066988937, -82.33930085713197],
+	coordinates: [27.906845222816653, -82.33790320204491],
 	units: [{ 
 		id: 318, 
 		streetNumber: 'Building 19',
@@ -257,36 +273,40 @@ export const buildingData = [
 		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
 		colorSchemeId: 'Keys 8E'
 	}]
-  },
-  {
+},
+{
 	id: 'building-20',
 	buildingType: 'Chase',
-	coordinates: [27.902664066988937, -82.33930085713197],
+	coordinates: [27.906387233194636, -82.3378873020074],
 	units: [{
 		id: 201,
 		address: 'Building 20 Address',
 		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
 		colorSchemeId: 'Chase 6A'
 	}]
-  },
-  {
+},
+{
 	id: 'building-21',
 	buildingType: 'Chase',
+	coordinates: [27.906215984940015, -82.33742791615225],
 	units: [{ id: 202, address: 'Building 21 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-22',
 	buildingType: 'Chase',
+	coordinates: [27.905760628993345, -82.33741486490972],
 	units: [{ id: 320, address: 'Building 22 Address', colorSchemeId: 'Chase 4A' }]
   },
   {
 	id: 'building-23',
 	buildingType: 'Chase',
+	coordinates: [27.905407450706228, -82.33694279563584],
 	units: [{ id: 203, address: 'Building 23 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-24',
 	buildingType: 'Chase',
+	coordinates: [27.90541337641266, -82.33631515921054],
 	units: [{ id: 204, address: 'Building 24 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
@@ -304,56 +324,56 @@ export const buildingData = [
   {
 	id: 'building-27',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.904429686798593, -82.33574653053336],
 	units: [{ id: 206, address: 'Building 27 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-28',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.904424945388897, -82.33637416693121],
 	units: [{ id: 207, address: 'Building 28 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-29',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.904425356755628, -82.33691769875945],
 	units: [{ id: 322, address: 'Building 29 Address', colorSchemeId: 'Chase 4A' }]
   },
   {
 	id: 'building-30',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.904425356818322, -82.33745874650127],
 	units: [{ id: 208, address: 'Building 30 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-31',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.904417698796976, -82.33809385278857],
 	units: [{ id: 209, address: 'Building 31 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-32',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.904867980427923, -82.33821581399675],
 	units: [{ id: 210, address: 'Building 32 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-33',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.905428435332205, -82.33823072088516],
 	units: [{ id: 211, address: 'Building 33 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-34',
 	buildingType: 'Chase',
-	coordinates: [0, 0],
+	coordinates: [27.906012837905244, -82.33825375769845],
 	units: [{ id: 212, address: 'Building 34 Address', colorSchemeId: 'Chase 6A' }]
   },
   {
 	id: 'building-35',
 	buildingType: 'Bay',
 	colorSchemeId: 'Bay 101',
-	coordinates: [0, 0],
+	coordinates: [27.906289034705974, -82.33866378678383],
 	units: [{ id: 101, address: 'Building 35 Address' }]
   },
   {
@@ -361,24 +381,28 @@ export const buildingData = [
 	buildingType: 'Bay',
 	colorSchemeId: 'Bay 102',
 	coordinates: [0, 0],
+	coordinates: [27.905917796713986, -82.33865159032527],
 	units: [{ id: 113, address: 'Building 36 Address' }]
   },
   {
 	id: 'building-37',
 	buildingType: 'Bay',
 	colorSchemeId: 'Bay 103',
+	coordinates: [27.90548065852746, -82.3386370348756],
 	units: [{ id: 123, address: 'Building 37 Address' }]
   },
   {
 	id: 'building-38',
 	buildingType: 'Bay',
 	colorSchemeId: 'Bay 104',
+	coordinates: [27.90500066681396, -82.338653127824],
 	units: [{ id: 135, address: 'Building 38 Address' }]
   },
   {
 	id: 'building-39',
 	buildingType: 'Bay',
 	colorSchemeId: 'Bay 101',
+	coordinates: [27.904542006022503, -82.3386705621776],
 	units: [{ id: 102, address: 'Building 39 Address' }]
   },
   {

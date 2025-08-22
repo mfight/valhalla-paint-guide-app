@@ -1,0 +1,85 @@
+/* components/ui/SearchInput/SearchInput.module.scss */
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  @include form-input;
+  padding-left: calc(#{$spacing-10} + #{$spacing-1}); // Space for icon
+  padding-right: calc(#{$spacing-10} + #{$spacing-1}); // Space for clear button
+  
+  &::placeholder {
+    color: var(--search-placeholder, #{$gray-400});
+  }
+  
+  &:focus {
+    border-color: var(--search-focus-border, #{$primary});
+    @include focus-ring(var(--search-focus-ring, #{$primary}));
+  }
+  
+  @include dark-mode {
+    background-color: var(--search-bg-dark, #{$gray-800});
+    border-color: var(--search-border-dark, #{$gray-600});
+    color: var(--search-text-dark, #{$white});
+    
+    &::placeholder {
+      color: var(--search-placeholder-dark, #{$gray-400});
+    }
+    
+    &:focus {
+      border-color: var(--search-focus-border-dark, #{$blue-400});
+    }
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: $spacing-3;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.clearButton {
+  position: absolute;
+  right: $spacing-3;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: $radius-sm;
+}
+
+// Size variants
+.sizeSmall {
+  .input {
+    padding: $spacing-2 calc(#{$spacing-8} + #{$spacing-1}) $spacing-2 calc(#{$spacing-8} + #{$spacing-1});
+    font-size: $font-size-sm;
+  }
+  
+  .searchIcon {
+    left: $spacing-2;
+  }
+  
+  .clearButton {
+    right: $spacing-2;
+  }
+}
+
+.sizeLarge {
+  .input {
+    padding: $spacing-4 calc(#{$spacing-12} + #{$spacing-1}) $spacing-4 calc(#{$spacing-12} + #{$spacing-1});
+    font-size: $font-size-lg;
+  }
+  
+  .searchIcon {
+    left: $spacing-4;
+  }
+  
+  .clearButton {
+    right: $spacing-4;
+  }
+}
