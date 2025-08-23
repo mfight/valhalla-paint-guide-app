@@ -9,7 +9,7 @@
   border: 1px solid var(--card-border, #{$gray-200});
   transition: $transition-base;
   // Removed overflow: hidden to allow tooltips to appear outside card bounds
-  
+
   @include dark-mode {
     background: var(--card-bg-dark, #{$gray-800});
     border-color: var(--card-border-dark, #{$gray-700});
@@ -19,7 +19,7 @@
 // Variant: Default (basic card)
 .variantDefault {
   box-shadow: var(--card-shadow, #{$shadow-sm});
-  
+
   @include dark-mode {
     box-shadow: var(--card-shadow-dark, 0 1px 3px 0 rgba(0, 0, 0, 0.3));
   }
@@ -28,23 +28,29 @@
 // Variant: Elevated (more prominent)
 .variantElevated {
   box-shadow: var(--card-elevated-shadow, #{$shadow-lg});
-  
+
   &:hover {
     box-shadow: var(--card-elevated-hover-shadow, #{$shadow-xl});
     // Removed: transform: var(--card-elevated-hover-transform, translateY(-2px));
   }
-  
+
   @include reduced-motion {
     &:hover {
       // No transform to remove
     }
   }
-  
+
   @include dark-mode {
-    box-shadow: var(--card-elevated-shadow-dark, 0 10px 15px -3px rgba(0, 0, 0, 0.3));
-    
+    box-shadow: var(
+      --card-elevated-shadow-dark,
+      0 10px 15px -3px rgba(0, 0, 0, 0.3)
+    );
+
     &:hover {
-      box-shadow: var(--card-elevated-hover-shadow-dark, 0 20px 25px -5px rgba(0, 0, 0, 0.4));
+      box-shadow: var(
+        --card-elevated-hover-shadow-dark,
+        0 20px 25px -5px rgba(0, 0, 0, 0.4)
+      );
     }
   }
 }
@@ -55,31 +61,34 @@
   box-shadow: var(--card-shadow, #{$shadow-sm});
   cursor: pointer;
   transition: all $transition-base;
-  
+
   &:hover {
     box-shadow: var(--card-listitem-hover-shadow, #{$shadow-md});
     // Removed: transform: var(--card-listitem-hover-transform, translateY(-1px));
   }
-  
+
   &:active {
     // Removed: transform: translateY(0);
   }
-  
+
   &:focus-within {
     @include focus-ring(var(--card-focus-ring, #{$primary}), 2px);
   }
-  
+
   @include reduced-motion {
     &:hover {
       // No transform to remove
     }
   }
-  
+
   @include dark-mode {
     box-shadow: var(--card-shadow-dark, 0 1px 3px 0 rgba(0, 0, 0, 0.3));
-    
+
     &:hover {
-      box-shadow: var(--card-listitem-hover-shadow-dark, 0 4px 6px -1px rgba(0, 0, 0, 0.4));
+      box-shadow: var(
+        --card-listitem-hover-shadow-dark,
+        0 4px 6px -1px rgba(0, 0, 0, 0.4)
+      );
     }
   }
 }
@@ -88,37 +97,40 @@
 .variantLinked {
   box-shadow: var(--card-shadow, #{$shadow-sm});
   transition: all $transition-base;
-  
+
   &:hover {
     box-shadow: var(--card-linked-hover-shadow, #{$shadow-md});
   }
-  
+
   // Style for when the entire card is a link
   &.clickable {
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    
+
     &:hover {
       // Removed: transform: var(--card-linked-hover-transform, translateY(-1px));
     }
-    
+
     &:active {
       // Removed: transform: translateY(0);
     }
-    
+
     @include reduced-motion {
       &:hover {
         // No transform to remove
       }
     }
   }
-  
+
   @include dark-mode {
     box-shadow: var(--card-shadow-dark, 0 1px 3px 0 rgba(0, 0, 0, 0.3));
-    
+
     &:hover {
-      box-shadow: var(--card-linked-hover-shadow-dark, 0 4px 6px -1px rgba(0, 0, 0, 0.4));
+      box-shadow: var(
+        --card-linked-hover-shadow-dark,
+        0 4px 6px -1px rgba(0, 0, 0, 0.4)
+      );
     }
   }
 }
@@ -127,7 +139,7 @@
 .header {
   align-content: center;
   padding: var(--card-header-padding, #{$spacing-4} #{$spacing-4} 0);
-  
+
   &.hasActions {
     display: flex;
     justify-content: space-between;
@@ -142,7 +154,7 @@
 
 .actions {
   padding: var(--card-actions-padding, 0 #{$spacing-4} #{$spacing-4});
-  
+
   &.headerActions {
     padding: 0;
     flex-shrink: 0;
@@ -153,7 +165,7 @@
   padding: var(--card-footer-padding, 0 #{$spacing-4} #{$spacing-4});
   border-top: 1px solid var(--card-divider, #{$gray-200});
   margin-top: $spacing-4;
-  
+
   @include dark-mode {
     border-color: var(--card-divider-dark, #{$gray-700});
   }
@@ -166,7 +178,7 @@
   color: var(--card-title-color, #{$gray-800});
   margin: 0 0 $spacing-1 0;
   line-height: $line-height-tight;
-  
+
   @include dark-mode {
     color: var(--card-title-color-dark, #{$white});
   }
@@ -178,7 +190,7 @@
   color: var(--card-subtitle-color, #{$gray-600});
   margin: 0;
   line-height: $line-height-normal;
-  
+
   @include dark-mode {
     color: var(--card-subtitle-color-dark, #{$gray-300});
   }
@@ -189,7 +201,7 @@
   color: var(--card-description-color, #{$gray-700});
   margin: 0;
   line-height: $line-height-normal;
-  
+
   @include dark-mode {
     color: var(--card-description-color-dark, #{$gray-200});
   }
@@ -203,11 +215,11 @@
   .footer {
     padding: $spacing-3;
   }
-  
+
   .title {
     font-size: $font-size-base;
   }
-  
+
   .subtitle {
     font-size: $font-size-xs;
   }
@@ -220,7 +232,7 @@
   .footer {
     padding: $spacing-6;
   }
-  
+
   .title {
     font-size: $font-size-xl;
   }

@@ -10,15 +10,15 @@
   cursor: pointer;
   transition: $transition-base;
   flex-shrink: 0;
-  
+
   &:hover {
     box-shadow: var(--swatch-hover-shadow, #{$shadow-lg});
   }
-  
+
   &:focus {
     @include focus-ring(var(--swatch-focus-ring, #{$primary}));
   }
-  
+
   @include reduced-motion {
     transition: none;
   }
@@ -32,11 +32,11 @@
 .sizeSmall {
   width: 1rem;
   height: 1rem;
-  
+
   &.shapeSquare {
     border-radius: $radius-sm;
   }
-  
+
   &.shapeRounded {
     border-radius: $radius-base;
   }
@@ -45,11 +45,11 @@
 .sizeMedium {
   width: 1.5rem;
   height: 1.5rem;
-  
+
   &.shapeSquare {
     border-radius: $radius-base;
   }
-  
+
   &.shapeRounded {
     border-radius: $radius-md;
   }
@@ -58,11 +58,11 @@
 .sizeLarge {
   width: 2rem;
   height: 2rem;
-  
+
   &.shapeSquare {
     border-radius: $radius-md;
   }
-  
+
   &.shapeRounded {
     border-radius: $radius-lg;
   }
@@ -71,11 +71,11 @@
 .sizeXLarge {
   width: 3rem;
   height: 3rem;
-  
+
   &.shapeSquare {
     border-radius: $radius-lg;
   }
-  
+
   &.shapeRounded {
     border-radius: $radius-xl;
   }
@@ -94,14 +94,14 @@
 
 .tooltipLabel {
   margin-bottom: $spacing-1;
-  
+
   .labelText {
     font-size: $font-size-xs;
     font-weight: $font-weight-bold;
     color: var(--tooltip-label-color, #{$gray-500});
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    
+
     @include dark-mode {
       color: var(--tooltip-label-color-dark, #{$gray-400});
     }
@@ -114,7 +114,7 @@
   border-radius: $radius-base;
   border: 1px solid var(--tooltip-swatch-border, #{$gray-200});
   margin-bottom: $spacing-1;
-  
+
   @include dark-mode {
     border-color: var(--tooltip-swatch-border-dark, #{$gray-600});
   }
@@ -122,14 +122,14 @@
 
 .tooltipBrand {
   margin-bottom: $spacing-1;
-  
+
   .brandText {
     font-size: $font-size-xs;
     font-weight: $font-weight-bold;
     color: var(--tooltip-brand-color, #{$gray-500});
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    
+
     @include dark-mode {
       color: var(--tooltip-brand-color-dark, #{$gray-400});
     }
@@ -142,17 +142,17 @@
     font-size: $font-size-lg;
     color: var(--tooltip-code-color, #{$gray-800});
     margin-bottom: $spacing-1;
-    
+
     @include dark-mode {
       color: var(--tooltip-code-color-dark, #{$white});
     }
   }
-  
+
   .paintName {
     font-size: $font-size-sm;
     color: var(--tooltip-name-color, #{$gray-600});
     font-weight: $font-weight-medium;
-    
+
     @include dark-mode {
       color: var(--tooltip-name-color-dark, #{$gray-300});
     }

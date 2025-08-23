@@ -14,9 +14,9 @@ $segmented-dot-size: $spacing-3;
   background-color: var(--segmented-bg, #{$gray-100});
   border-radius: $radius-lg;
   padding: $segmented-padding;
-  
+
   @include dark-mode {
-	background-color: var(--segmented-bg-dark, #{$gray-700});
+    background-color: var(--segmented-bg-dark, #{$gray-700});
   }
 }
 
@@ -28,25 +28,25 @@ $segmented-dot-size: $spacing-3;
   border-radius: $radius-md;
   gap: $segmented-gap;
   transition: $transition-smooth;
-  
+
   @include focus-visible($primary);
-  
+
   @include mobile {
-	padding: $spacing-1 $spacing-3;
-	font-size: $font-size-xs;
+    padding: $spacing-1 $spacing-3;
+    font-size: $font-size-xs;
   }
-  
+
   @include high-contrast {
-	border: 1px solid transparent;
-	
-	&:focus {
-	  border-color: $primary;
-	  box-shadow: none;
-	}
+    border: 1px solid transparent;
+
+    &:focus {
+      border-color: $primary;
+      box-shadow: none;
+    }
   }
-  
+
   @include reduced-motion {
-	transition: none;
+    transition: none;
   }
 }
 
@@ -54,32 +54,32 @@ $segmented-dot-size: $spacing-3;
   background-color: var(--segmented-active-bg, #{$white});
   color: var(--segmented-active-text, #{$primary});
   box-shadow: $shadow-sm;
-  
+
   @include dark-mode {
-	background-color: var(--segmented-active-bg-dark, #{$gray-800});
-	color: var(--segmented-active-text-dark, #{$blue-400});
+    background-color: var(--segmented-active-bg-dark, #{$gray-800});
+    color: var(--segmented-active-text-dark, #{$blue-400});
   }
-  
+
   @include high-contrast {
-	border-color: currentColor;
+    border-color: currentColor;
   }
 }
 
 .buttonInactive {
   color: var(--segmented-inactive-text, #{$gray-600});
-  
+
   &:hover {
-	color: var(--segmented-inactive-hover-text, #{$gray-900});
-	background-color: var(--segmented-inactive-hover-bg, #{$gray-50});
+    color: var(--segmented-inactive-hover-text, #{$gray-900});
+    background-color: var(--segmented-inactive-hover-bg, #{$gray-50});
   }
-  
+
   @include dark-mode {
-	color: var(--segmented-inactive-text-dark, #{$gray-300});
-	
-	&:hover {
-	  color: var(--segmented-inactive-hover-text-dark, #{$white});
-	  background-color: var(--segmented-inactive-hover-bg-dark, #{$gray-600});
-	}
+    color: var(--segmented-inactive-text-dark, #{$gray-300});
+
+    &:hover {
+      color: var(--segmented-inactive-hover-text-dark, #{$white});
+      background-color: var(--segmented-inactive-hover-bg-dark, #{$gray-600});
+    }
   }
 }
 
@@ -88,9 +88,9 @@ $segmented-dot-size: $spacing-3;
   height: $segmented-dot-size;
   border-radius: $radius-full;
   flex-shrink: 0;
-  
+
   @include mobile {
-	width: $spacing-2;
-	height: $spacing-2;
+    width: $spacing-2;
+    height: $spacing-2;
   }
 }
