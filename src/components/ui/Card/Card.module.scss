@@ -31,12 +31,12 @@
   
   &:hover {
     box-shadow: var(--card-elevated-hover-shadow, #{$shadow-xl});
-    transform: var(--card-elevated-hover-transform, translateY(-2px));
+    // Removed: transform: var(--card-elevated-hover-transform, translateY(-2px));
   }
   
   @include reduced-motion {
     &:hover {
-      transform: none;
+      // No transform to remove
     }
   }
   
@@ -51,17 +51,18 @@
 
 // Variant: List Item (clickable card for lists)
 .variantListItem {
+  align-content: center;
   box-shadow: var(--card-shadow, #{$shadow-sm});
   cursor: pointer;
   transition: all $transition-base;
   
   &:hover {
     box-shadow: var(--card-listitem-hover-shadow, #{$shadow-md});
-    transform: var(--card-listitem-hover-transform, translateY(-1px));
+    // Removed: transform: var(--card-listitem-hover-transform, translateY(-1px));
   }
   
   &:active {
-    transform: translateY(0);
+    // Removed: transform: translateY(0);
   }
   
   &:focus-within {
@@ -70,7 +71,7 @@
   
   @include reduced-motion {
     &:hover {
-      transform: none;
+      // No transform to remove
     }
   }
   
@@ -99,16 +100,16 @@
     color: inherit;
     
     &:hover {
-      transform: var(--card-linked-hover-transform, translateY(-1px));
+      // Removed: transform: var(--card-linked-hover-transform, translateY(-1px));
     }
     
     &:active {
-      transform: translateY(0);
+      // Removed: transform: translateY(0);
     }
     
     @include reduced-motion {
       &:hover {
-        transform: none;
+        // No transform to remove
       }
     }
   }
@@ -124,6 +125,7 @@
 
 // Card sections
 .header {
+  align-content: center;
   padding: var(--card-header-padding, #{$spacing-4} #{$spacing-4} 0);
   
   &.hasActions {

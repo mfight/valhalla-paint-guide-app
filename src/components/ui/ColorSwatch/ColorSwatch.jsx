@@ -1,5 +1,6 @@
-// components/ui/ColorSwatch/ColorSwatch.jsx
-import React, { memo, useState, useCallback } from 'react';
+// components/ui/ColorSwatch/ColorSwatch.jsx - Updated to use Tooltip component
+import React, { memo, useCallback } from 'react';
+import Tooltip from '../Tooltip';
 import styles from './ColorSwatch.module.scss';
 
 const ColorSwatch = memo(({ 
@@ -8,7 +9,7 @@ const ColorSwatch = memo(({
   size = "medium",              // 'small', 'medium', 'large', 'xlarge'
   shape = "rounded",            // 'square', 'rounded', 'circle'
   showTooltip = true,           // Show hover tooltip
-  tooltipPosition = "top",      // 'top', 'bottom', 'left', 'right'
+  tooltipPosition = "top",      // 'top', 'bottom', 'left', 'right', 'auto'
   brand = "Sherwin-Williams",   // Paint brand name
   onClick,                      // Click handler
   onHover,                      // Hover handler (external state)
@@ -19,31 +20,6 @@ const ColorSwatch = memo(({
   ariaLabel,
   ...props
 }) => {
-  const [internalHovered, setInternalHovered] = useState(false);
-  
-  // Use external hover state if provided, otherwise use internal
-  const isTooltipVisible = showTooltip && (isHovered || internalHovered);
-  
-  const handleMouseEnter = useCallback(() => {
-	if (disabled) return;
-	
-	if (onHover) {
-	  onHover();
-	} else {
-	  setInternalHovered(true);
-	}
-  }, [onHover, disabled]);
-  
-  const handleMouseLeave = useCallback(() => {
-	if (disabled) return;
-	
-	if (onLeave) {
-	  onLeave();
-	} else {
-	  setInternalHovered(false);
-	}
-  }, [onLeave, disabled]);
-  
   const handleClick = useCallback(() => {
 	if (disabled || !onClick) return;
 	onClick(paintInfo);
@@ -72,13 +48,6 @@ const ColorSwatch = memo(({
 	circle: styles.shapeCircle
   }[shape];
   
-  const tooltipPositionClass = {
-	top: styles.tooltipTop,
-	bottom: styles.tooltipBottom,
-	left: styles.tooltipLeft,
-	right: styles.tooltipRight
-  }[tooltipPosition];
-  
   const swatchClasses = [
 	styles.swatch,
 	sizeClass,
@@ -90,54 +59,66 @@ const ColorSwatch = memo(({
   if (!paintInfo) {
 	return null;
   }
-  
-  return (
-	<div className={styles.container}>
-	  <div
-		className={swatchClasses}
+
+  // Tooltip content
+  const tooltipContent = (
+	<div className={styles.tooltipContent}>
+	  {label && (
+		<div className={styles.tooltipLabel}>
+		  <span className={styles.labelText}>{label}</span>
+		</div>
+	  )}
+	  
+	  <div 
+		className={styles.tooltipSwatch}
 		style={{ backgroundColor: paintInfo.color }}
-		onMouseEnter={handleMouseEnter}
-		onMouseLeave={handleMouseLeave}
-		onClick={handleClick}
-		onKeyDown={handleKeyDown}
-		tabIndex={onClick && !disabled ? 0 : -1}
-		role={onClick ? "button" : "img"}
-		aria-label={ariaLabel || `${paintInfo.name} color swatch`}
-		aria-disabled={disabled}
-		{...props}
-	  >
-		{showTooltip && isTooltipVisible && (
-		  <div className={`${styles.tooltip} ${tooltipPositionClass} ${styles.tooltipVisible}`}>
-			<div className={styles.tooltipContent}>
-			  {label && (
-				<div className={styles.tooltipLabel}>
-				  <span className={styles.labelText}>{label}</span>
-				</div>
-			  )}
-			  
-			  <div 
-				className={styles.tooltipSwatch}
-				style={{ backgroundColor: paintInfo.color }}
-				aria-hidden="true"
-			  />
-			  
-			  {brand && (
-				<div className={styles.tooltipBrand}>
-				  <span className={styles.brandText}>{brand}</span>
-				</div>
-			  )}
-			  
-			  <div className={styles.tooltipInfo}>
-				<div className={styles.paintCode}>{paintInfo.code}</div>
-				<div className={styles.paintName}>{paintInfo.name}</div>
-			  </div>
-			  
-			  <div className={styles.tooltipTail} />
-			</div>
-		  </div>
-		)}
+		aria-hidden="true"
+	  />
+	  
+	  {brand && (
+		<div className={styles.tooltipBrand}>
+		  <span className={styles.brandText}>{brand}</span>
+		</div>
+	  )}
+	  
+	  <div className={styles.tooltipInfo}>
+		<div className={styles.paintCode}>{paintInfo.code}</div>
+		<div className={styles.paintName}>{paintInfo.name}</div>
 	  </div>
 	</div>
+  );
+
+  const swatchElement = (
+	<div
+	  className={swatchClasses}
+	  style={{ backgroundColor: paintInfo.color }}
+	  onClick={handleClick}
+	  onKeyDown={handleKeyDown}
+	  onMouseEnter={onHover}
+	  onMouseLeave={onLeave}
+	  tabIndex={onClick && !disabled ? 0 : -1}
+	  role={onClick ? "button" : "img"}
+	  aria-label={ariaLabel || `${paintInfo.name} color swatch`}
+	  aria-disabled={disabled}
+	  {...props}
+	/>
+  );
+
+  // If tooltip is disabled or no paint info, return just the swatch
+  if (!showTooltip || !paintInfo) {
+	return swatchElement;
+  }
+
+  return (
+	<Tooltip
+	  content={tooltipContent}
+	  position={tooltipPosition}
+	  visible={isHovered || undefined}
+	  trigger={onHover ? "manual" : "hover"}
+	  disabled={disabled}
+	>
+	  {swatchElement}
+	</Tooltip>
   );
 });
 

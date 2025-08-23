@@ -1,19 +1,31 @@
 import React, { useState, useCallback, memo, useEffect } from 'react';
-import { Search, Home, Palette, X } from 'lucide-react';
+import { Search, Home, X } from 'lucide-react';
+
+// Styles
+import styles from './App.module.scss';
+
+// UI Components
 import SegmentedControl from './components/ui/SegmentedControl';
-import SearchInput from './components/ui/SearchInput';
 import ColorSwatch from './components/ui/ColorSwatch';
 import Card from './components/ui/Card';
-import Icon from './components/ui/Icon';
 import Button from './components/ui/Button';
+import EmptyState from './components/ui/EmptyState';
+
+// Feature Components
 import SWPaintCodeCard from './components/features/SWPaintCodeCard';
 import UnitSearch from './components/features/UnitSearch';
+
+// Map utilities
+import { useMapTiles } from './hooks/useMapTiles';
+import { MAP_CONFIG, getMarkerColor } from './config/mapConfig';
 import { createBadgeIcon } from './components/maps/LeafletBadgeMarker';
 import { createPinIcon } from './components/maps/LeafletPinMarker';
+
+// Data
 import { colorSchemes } from './data/colorSchemes';
 import { buildingData } from './data/buildingData';
 
-// Only import Leaflet if we're using it
+// Leaflet imports with fallback
 let MapContainer, TileLayer, Marker, Popup, L;
 try {
   const leaflet = require('react-leaflet');
@@ -37,6 +49,7 @@ try {
   console.log('Leaflet not available, using fallback');
 }
 
+// Process building data into flat array of units
 const allUnits = buildingData.flatMap(building => {
   return building.units.map(unit => {
     // Check unit first, fall back to building (hybrid approach)
@@ -58,61 +71,45 @@ const allUnits = buildingData.flatMap(building => {
       buildingType: building.buildingType,
       streetAddress,
       fullAddress,
-      coordinates: unit.coordinates || building.coordinates, // Use unit coordinates first, then building coordinates
-      buildingCoordinates: building.coordinates, // Keep building coordinates available
+      coordinates: unit.coordinates || building.coordinates,
+      buildingCoordinates: building.coordinates,
       colorScheme: colorScheme ? colorScheme.name : 'Unknown',
       paintCodes: colorScheme ? colorScheme.paintCodes : {}
     };
   });
 });
 
-// Updated UnitListItem component with proper dark mode styling
 const UnitListItem = memo(({ unit, onSelect, hoveredSwatch, onSwatchHover, onSwatchLeave }) => (
   <Card variant="listItem" onClick={() => onSelect(unit)}>
     <Card.Header hasActions>
       <div>
         <Card.Title>{unit.streetAddress}</Card.Title>
-        <Card.Subtitle>{unit.buildingId.replace('building-', 'Building ')} | {unit.buildingType} unit</Card.Subtitle>
+        <Card.Subtitle>
+          {unit.buildingId.replace('building-', 'Building ')} | {unit.buildingType} unit
+        </Card.Subtitle>
       </div>
       <Card.Actions position="header">
         <div className="text-center">
-          {/* Fixed: Use CSS variable instead of hardcoded text-gray-300 */}
           <Card.Subtitle className="text-sm font-medium mb-1 text-center">
             {unit.colorScheme}
           </Card.Subtitle>
           <div className="flex space-x-1">
-            <ColorSwatch 
-              paintInfo={unit.paintCodes.bodyPrimary} 
-              label="Body Primary"
-              size="medium"
-              onHover={() => onSwatchHover(`${unit.id}-primary`)}
-              onLeave={onSwatchLeave}
-              isHovered={hoveredSwatch === `${unit.id}-primary`}
-            />
-            <ColorSwatch 
-              paintInfo={unit.paintCodes.bodySecondary} 
-              label="Body Secondary"
-              size="medium"
-              onHover={() => onSwatchHover(`${unit.id}-secondary`)}
-              onLeave={onSwatchLeave}
-              isHovered={hoveredSwatch === `${unit.id}-secondary`}
-            />
-            <ColorSwatch 
-              paintInfo={unit.paintCodes.trim} 
-              label="Trim"
-              size="medium"
-              onHover={() => onSwatchHover(`${unit.id}-trim`)}
-              onLeave={onSwatchLeave}
-              isHovered={hoveredSwatch === `${unit.id}-trim`}
-            />
-            <ColorSwatch 
-              paintInfo={unit.paintCodes.door} 
-              label="Door"
-              size="medium"
-              onHover={() => onSwatchHover(`${unit.id}-door`)}
-              onLeave={onSwatchLeave}
-              isHovered={hoveredSwatch === `${unit.id}-door`}
-            />
+            {[
+              { paintInfo: unit.paintCodes.bodyPrimary, label: 'Body Primary', key: 'primary' },
+              { paintInfo: unit.paintCodes.bodySecondary, label: 'Body Secondary', key: 'secondary' },
+              { paintInfo: unit.paintCodes.trim, label: 'Trim', key: 'trim' },
+              { paintInfo: unit.paintCodes.door, label: 'Door', key: 'door' }
+            ].map(({ paintInfo, label, key }) => (
+              <ColorSwatch 
+                key={key}
+                paintInfo={paintInfo} 
+                label={label}
+                size="medium"
+                onHover={() => onSwatchHover(`${unit.id}-${key}`)}
+                onLeave={onSwatchLeave}
+                isHovered={hoveredSwatch === `${unit.id}-${key}`}
+              />
+            ))}
           </div>
         </div>
       </Card.Actions>
@@ -120,7 +117,6 @@ const UnitListItem = memo(({ unit, onSelect, hoveredSwatch, onSwatchHover, onSwa
   </Card>
 ));
 
-// Building type filter using the SegmentedControl
 const BuildingTypeFilter = memo(({ selectedType, onTypeSelect }) => {
   const buildingTypes = [
     { value: 'All', label: 'All units', color: null },
@@ -141,9 +137,48 @@ const BuildingTypeFilter = memo(({ selectedType, onTypeSelect }) => {
 
 const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingType, searchTerm, onBuildingTypeSelect }) => {
   const [mapError, setMapError] = useState(false);
-  
+  const tileConfig = useMapTiles();
+
+  // Inject popup styles
   useEffect(() => {
-    // Force Leaflet to invalidate size after component mounts
+    const popupStyles = `
+      .unit-row-hover {
+        transition: background-color 0.2s ease;
+        pointer-events: auto;
+      }
+      
+      .unit-row-hover:hover {
+        background-color: #f3f4f6 !important;
+      }
+      
+      .unit-row-hover * {
+        pointer-events: none;
+      }
+      
+      .custom-popup .leaflet-popup-content {
+        margin: 16px 8px;
+        padding: 0;
+      }
+      
+      .custom-popup .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      }
+    `;
+    
+    const styleElement = document.createElement('style');
+    styleElement.textContent = popupStyles;
+    document.head.appendChild(styleElement);
+    
+    return () => {
+      if (document.head.contains(styleElement)) {
+        document.head.removeChild(styleElement);
+      }
+    };
+  }, []);
+
+  // Force Leaflet to invalidate size after component mounts
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (window.leafletMap) {
         window.leafletMap.invalidateSize();
@@ -153,18 +188,15 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
     return () => clearTimeout(timer);
   }, []);
   
-  console.log('NeighborhoodMap rendering...');
-  
   // Get buildings to show on map based on search/filter logic
   const getBuildingsForMap = () => {
     return buildingData.reduce((acc, building) => {
       if (building.coordinates) {
-        // Apply building type filter
         const matchesBuildingTypeFilter = selectedBuildingType === 'All' || building.buildingType === selectedBuildingType;
         
         if (matchesBuildingTypeFilter) {
-          // If there's a search term, only show buildings with matching units
           if (searchTerm.trim()) {
+            // Show buildings with matching units
             const matchingUnits = filteredUnits.filter(unit => unit.buildingId === building.id);
             if (matchingUnits.length > 0) {
               acc.push({
@@ -175,7 +207,7 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
               });
             }
           } else {
-            // No search term - show all buildings of the selected type with all their units
+            // Show all buildings of the selected type
             const allUnitsInBuilding = allUnits.filter(unit => unit.buildingId === building.id);
             acc.push({
               buildingId: building.id,
@@ -192,22 +224,6 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
   
   const allBuildingsWithCoordinates = getBuildingsForMap();
   
-  // Function to get building coordinates from building data
-  function getBuildingCoordinates(buildingId) {
-    const building = buildingData.find(b => b.id === buildingId);
-    return building?.coordinates || null;
-  }
-  
-  // Get marker color based on building type
-  function getMarkerColor(buildingType) {
-    const colors = {
-      'Bay': '#3B82F6',    // Blue
-      'Chase': '#10B981',  // Green  
-      'Keys': '#F59E0B',   // Orange
-    };
-    return colors[buildingType] || '#6B7280'; // Default gray
-  }
-  
   // Fallback if Leaflet isn't working
   if (mapError || !MapContainer) {
     return (
@@ -220,15 +236,13 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
           <p className="text-sm text-gray-600">Pond Ridge Dr area, Riverview FL</p>
         </div>
         
-        <div style={{ height: '480px', width: '100%', backgroundColor: '#f8f9fa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-          <div style={{ textAlign: 'center', padding: '20px' }}>
-            <Home className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            <p style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: '#6b7280' }}>Map Unavailable</p>
-            <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#9ca3af' }}>
-              Centered on 4916 Pond Ridge Dr, Riverview FL 33578
-            </p>
-          </div>
-        </div>
+        <EmptyState
+          icon={Home}
+          title="Map Unavailable"
+          description="Centered on 4916 Pond Ridge Dr, Riverview FL 33578"
+          size="default"
+          className="bg-gray-50"
+        />
       </div>
     );
   }
@@ -242,7 +256,6 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
             <p className="text-sm text-gray-600">Riverview, FL</p>
           </div>
           
-          {/* Building Type Filter in map header */}
           <BuildingTypeFilter 
             selectedType={selectedBuildingType}
             onTypeSelect={onBuildingTypeSelect}
@@ -252,13 +265,12 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
       
       <div style={{ height: '480px', width: '100%' }}>
         <MapContainer
-          center={[27.90186699819714, -82.33602233229566]}
-          zoom={17}
+          center={MAP_CONFIG.defaultCenter}
+          zoom={MAP_CONFIG.defaultZoom}
           style={{ height: '100%', width: '100%', zIndex: 0 }}
           className="rounded-b-lg"
           whenCreated={(mapInstance) => {
             window.leafletMap = mapInstance;
-            console.log('Map created successfully!');
           }}
           onError={() => {
             console.error('Map failed to load');
@@ -266,15 +278,12 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
           }}
         >
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url={tileConfig.url}
+            attribution={tileConfig.attribution}
           />
           
-          {/* Building markers - show all buildings that have matching filtered units */}
           {allBuildingsWithCoordinates.map((building) => {
             const markerColor = getMarkerColor(building.buildingType);
-            
-            // Create custom badge marker for buildings using the component
             const customIcon = createBadgeIcon(L, {
               count: building.units.length,
               badgeColor: markerColor,
@@ -282,37 +291,72 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
               textColor: 'white',
               size: 'md'
             });
-            
+
             return (
               <Marker 
                 key={`building-${building.buildingId}`}
                 position={building.coordinates}
                 icon={customIcon}
               >
-                <Popup>
-                  <div style={{ minWidth: '200px' }}>
-                    <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+                <Popup className="custom-popup">
+                  <div style={{ minWidth: '250px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                    <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px', color: '#1f2937', padding: '0 4px' }}>
                       {building.buildingId.replace('building-', 'Building ')}
                     </div>
-                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>
+                    <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '12px', padding: '0 4px' }}>
                       {building.buildingType} • {building.units.length} unit{building.units.length !== 1 ? 's' : ''}
                     </div>
                     <div style={{ maxHeight: '120px', overflowY: 'auto' }}>
                       {building.units.map((unit, index) => (
                         <div 
                           key={unit.id}
+                          className="unit-row-hover"
                           style={{ 
-                            padding: '4px 0', 
-                            borderBottom: index < building.units.length - 1 ? '1px solid #eee' : 'none',
-                            cursor: 'pointer'
+                            padding: '4px',
+                            borderBottom: index < building.units.length - 1 ? '1px solid #e5e7eb' : 'none',
+                            cursor: 'pointer',
+                            borderRadius: '4px',
+                            width: '100%',
+                            boxSizing: 'border-box'
                           }}
                           onClick={() => onUnitSelect && onUnitSelect(unit)}
                         >
-                          <div style={{ fontSize: '13px', fontWeight: '500' }}>
-                            {unit.streetAddress}
-                          </div>
-                          <div style={{ fontSize: '11px', color: '#666' }}>
-                            {unit.colorScheme}
+                          <div style={{ 
+                            display: 'flex', 
+                            alignItems: 'flex-start', 
+                            justifyContent: 'space-between', 
+                            width: '100%',
+                            pointerEvents: 'none'
+                          }}>
+                            <div style={{ flex: '1', minWidth: 0 }}>
+                              <div style={{ fontSize: '13px', fontWeight: '500', color: '#1f2937', marginBottom: '2px' }}>
+                                {unit.streetAddress}
+                              </div>
+                              <div style={{ fontSize: '11px', color: '#6b7280' }}>
+                                {unit.colorScheme}
+                              </div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '4px', marginLeft: '12px', flexShrink: 0 }}>
+                              {[
+                                { paintInfo: unit.paintCodes.bodyPrimary, label: 'Body Primary' },
+                                { paintInfo: unit.paintCodes.bodySecondary, label: 'Body Secondary' },
+                                { paintInfo: unit.paintCodes.trim, label: 'Trim' },
+                                { paintInfo: unit.paintCodes.door, label: 'Door' }
+                              ].map(({ paintInfo, label }) => (
+                                <div
+                                  key={label}
+                                  style={{
+                                    width: '16px',
+                                    height: '16px',
+                                    borderRadius: '3px',
+                                    backgroundColor: paintInfo?.color || '#e5e7eb',
+                                    border: '1px solid #d1d5db',
+                                    flexShrink: 0
+                                  }}
+                                  title={`${label}: ${paintInfo?.code || 'N/A'} - ${paintInfo?.name || 'Unknown'}`}
+                                />
+                              ))}
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -330,20 +374,9 @@ const NeighborhoodMap = memo(({ filteredUnits, onUnitSelect, selectedBuildingTyp
 
 const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
   const [mapError, setMapError] = useState(false);
+  const tileConfig = useMapTiles();
   
-  // Use unit coordinates if available, otherwise building coordinates, otherwise center on neighborhood
-  const unitCoordinates = unit.coordinates || unit.buildingCoordinates || [27.90186699819714, -82.33602233229566];
-  
-  // Use the same color system as building markers
-  function getMarkerColor(buildingType) {
-    const colors = {
-      'Bay': '#3B82F6',    // Blue
-      'Chase': '#10B981',  // Green  
-      'Keys': '#F59E0B',   // Orange
-    };
-    return colors[buildingType] || '#6B7280'; // Default gray
-  }
-  
+  const unitCoordinates = unit.coordinates || unit.buildingCoordinates || MAP_CONFIG.defaultCenter;
   const markerColor = getMarkerColor(unit.buildingType);
   
   useEffect(() => {
@@ -369,25 +402,21 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
               variant="icon"
               size="xl"
               onClick={() => setSelectedUnit(null)}
-              ariaLabel="Close unit details"
+              aria-label="Close unit details"
             >
               <X />
             </Button>
           </div>
         </div>
-        <div style={{ height: '200px', backgroundColor: '#f8f9fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <p className="text-gray-500">Map not available</p>
-        </div>
         
-        {/* Paint Code Swatches in same card */}
-        <div className="p-4 border-t border-gray-200">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <SWPaintCodeCard label="Body (Primary)" paintInfo={unit.paintCodes.bodyPrimary} />
-            <SWPaintCodeCard label="Body (Secondary)" paintInfo={unit.paintCodes.bodySecondary} />
-            <SWPaintCodeCard label="Trim" paintInfo={unit.paintCodes.trim} />
-            <SWPaintCodeCard label="Door" paintInfo={unit.paintCodes.door} />
-          </div>
-        </div>
+        <EmptyState
+          icon={Home}
+          title="Map not available"
+          size="small"
+          className="bg-gray-50"
+        />
+        
+        <PaintCodeSection paintCodes={unit.paintCodes} />
       </div>
     );
   }
@@ -404,7 +433,7 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
             variant="icon"
             size="xl"
             onClick={() => setSelectedUnit(null)}
-            ariaLabel="Close unit details"
+            aria-label="Close unit details"
           >
             <X />
           </Button>
@@ -414,7 +443,7 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
       <div style={{ height: '200px', width: '100%' }}>
         <MapContainer
           center={unitCoordinates}
-          zoom={18}
+          zoom={MAP_CONFIG.detailZoom}
           style={{ height: '100%', width: '100%', zIndex: 0 }}
           whenCreated={(mapInstance) => {
             window.unitMap = mapInstance;
@@ -422,8 +451,8 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
           onError={() => setMapError(true)}
         >
           <TileLayer
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url={tileConfig.url}
+            attribution={tileConfig.attribution}
           />
           
           <Marker 
@@ -447,33 +476,40 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
         </MapContainer>
       </div>
       
-      {/* Paint Code Swatches in same card */}
-      <div className="p-4 border-t border-gray-200">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <SWPaintCodeCard label="Body (Primary)" paintInfo={unit.paintCodes.bodyPrimary} />
-          <SWPaintCodeCard label="Body (Secondary)" paintInfo={unit.paintCodes.bodySecondary} />
-          <SWPaintCodeCard label="Trim" paintInfo={unit.paintCodes.trim} />
-          <SWPaintCodeCard label="Door" paintInfo={unit.paintCodes.door} />
-        </div>
-        
-        {/* Sherwin-Williams info section */}
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-          <h3 className="font-semibold text-blue-800 mb-2">Sherwin-Williams Paint Codes</h3>
-          <p className="text-blue-700 text-sm">
-            Take these codes to any Sherwin-Williams store for exact color matching. 
-            Consider ordering samples before making your final purchase.
-          </p>
-        </div>
-      </div>
+      <PaintCodeSection paintCodes={unit.paintCodes} />
     </div>
   );
 });
 
+// Extracted paint code section component to reduce duplication
+const PaintCodeSection = memo(({ paintCodes }) => (
+  <div className="p-4 border-t border-gray-200">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <SWPaintCodeCard label="Body (Primary)" paintInfo={paintCodes.bodyPrimary} />
+      <SWPaintCodeCard label="Body (Secondary)" paintInfo={paintCodes.bodySecondary} />
+      <SWPaintCodeCard label="Trim" paintInfo={paintCodes.trim} />
+      <SWPaintCodeCard label="Door" paintInfo={paintCodes.door} />
+    </div>
+    
+    <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+      <h3 className="font-semibold text-blue-800 mb-2">Sherwin-Williams Paint Codes</h3>
+      <p className="text-blue-700 text-sm">
+        Take these codes to any Sherwin-Williams store for exact color matching. 
+        Consider ordering samples before making your final purchase.
+      </p>
+    </div>
+  </div>
+));
+
+const UnitDetailView = memo(({ unit, setSelectedUnit }) => (
+  <div className="space-y-4">
+    <UnitDetailMap unit={unit} setSelectedUnit={setSelectedUnit} />
+  </div>
+));
+
 const TownhomePaintApp = () => {
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [hoveredSwatch, setHoveredSwatch] = useState(null);
-  
-  // State for filtered units from UnitSearch
   const [filteredUnits, setFilteredUnits] = useState([]);
   const [searchMeta, setSearchMeta] = useState({
     searchTerm: '',
@@ -481,7 +517,6 @@ const TownhomePaintApp = () => {
     hasActiveFilters: false
   });
 
-  // Handler for building type filter (separate from UnitSearch)
   const handleBuildingTypeFilter = useCallback((buildingType) => {
     setSearchMeta(prev => ({
       ...prev,
@@ -490,7 +525,6 @@ const TownhomePaintApp = () => {
     }));
   }, []);
 
-  // Handler for UnitSearch component (now only handles search term)
   const handleFilteredUnitsChange = useCallback((filtered, meta) => {
     setFilteredUnits(filtered);
     setSearchMeta(prev => ({
@@ -512,26 +546,24 @@ const TownhomePaintApp = () => {
     setHoveredSwatch(null);
   }, []);
 
-  const UnitDetailView = ({ unit, setSelectedUnit }) => (
-    <div className="space-y-4">
-      <UnitDetailMap unit={unit} setSelectedUnit={setSelectedUnit} />
-    </div>
-  );
-
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Valhalla Exterior Paint Guide
-          </h1>
-          <p className="text-gray-600">Find official Sherwin-Williams exterior paint colors for your unit.</p>
+    <div className={styles.appContainer}>
+      <div className={styles.maxWidth}>
+        <header className={styles.header}>
+          <div>
+            <h1 className={styles.title}>
+              Valhalla Exterior Paint Guide
+            </h1>
+            <p className={styles.subtitle}>
+              Find official Sherwin-Williams exterior paint colors for your unit.
+            </p>
+          </div>
         </header>
 
         {selectedUnit ? (
           <UnitDetailView unit={selectedUnit} setSelectedUnit={setSelectedUnit} />
         ) : (
-          <div className="space-y-4">
+          <div className={styles.contentGrid}>
             <NeighborhoodMap 
               filteredUnits={filteredUnits}
               onUnitSelect={handleUnitSelect}
@@ -549,13 +581,14 @@ const TownhomePaintApp = () => {
               selectedBuildingType={searchMeta.selectedBuildingType}
             />
 
-            <div className="grid gap-4">
+            <div className={styles.resultsGrid}>
               {!searchMeta.hasActiveFilters ? (
-                <div className="text-center py-12 text-gray-500">
-                  <Home className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                  <h3 className="text-lg font-semibold mb-2">Search for Your Unit</h3>
-                  <p>Start typing to find units by address, building type, or color scheme</p>
-                </div>
+                <EmptyState
+                  icon={Home}
+                  title="Search for Your Unit"
+                  description="Start typing to find units by address, building type, or color scheme"
+                  size="large"
+                />
               ) : filteredUnits.length > 0 ? (
                 filteredUnits.map(unit => (
                   <UnitListItem
@@ -568,25 +601,25 @@ const TownhomePaintApp = () => {
                   />
                 ))
               ) : (
-                <div className="text-center py-8 text-gray-500">
-                  <Search className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                  <p>
-                    {searchMeta.searchTerm.trim() === '' ? (
-                      // Empty search - only filtering by building type
+                <EmptyState
+                  icon={Search}
+                  title={
+                    searchMeta.searchTerm.trim() === '' ? (
                       searchMeta.selectedBuildingType === 'All' 
                         ? 'No units found' 
                         : `No ${searchMeta.selectedBuildingType} units found`
                     ) : (
-                      // Has search term
                       `No ${searchMeta.selectedBuildingType === 'All' ? '' : searchMeta.selectedBuildingType + ' '}units found matching "${searchMeta.searchTerm}"`
-                    )}
-                    {searchMeta.selectedBuildingType !== 'All' && (
-                      <span className="block mt-1 text-sm">
-                        Try searching in all units or adjusting your search term
-                      </span>
-                    )}
-                  </p>
-                </div>
+                    )
+                  }
+                  size="default"
+                >
+                  {searchMeta.selectedBuildingType !== 'All' && (
+                    <p className={styles.noResultsHint}>
+                      Try searching in all units or adjusting your search term
+                    </p>
+                  )}
+                </EmptyState>
               )}
             </div>
           </div>

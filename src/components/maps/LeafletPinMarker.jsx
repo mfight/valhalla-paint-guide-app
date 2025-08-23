@@ -2,6 +2,7 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import PinMarker from '../ui/MapMarkers/PinMarker';
+import { LeafletTooltip } from './LeafletTooltip';
 
 // Helper function to create Leaflet icon from PinMarker
 export const createPinIcon = (L, props = {}) => {
@@ -47,6 +48,56 @@ export const createPinIcon = (L, props = {}) => {
 	iconSize: defaultIconSize,
 	iconAnchor: defaultIconAnchor,
   });
+};
+
+// Enhanced function to create pin marker with tooltip
+export const createPinMarkerWithTooltip = ({
+  L,                           // Leaflet instance
+  position,                    // [lat, lng]
+  tooltipContent,              // JSX content for tooltip
+  tooltipTrigger = "click",    // 'hover' or 'click'
+  tooltipPosition = "top",     // tooltip position
+  tooltipMaxWidth = 280,
+  tooltipVariant = "default",
+  tooltipSize = "medium",
+  onUnitSelect,                // Unit selection handler
+  // Pin marker props
+  badgeColor,
+  borderColor,
+  textColor,
+  size = "md",
+  className = "",
+  // Leaflet marker props
+  ...leafletMarkerProps
+}) => {
+  if (!L) return null;
+
+  const icon = createPinIcon(L, {
+	badgeColor,
+	borderColor,
+	textColor,
+	size,
+	className
+  });
+
+  // Return JSX component that can be used in React-Leaflet
+  return (
+	<LeafletTooltip
+	  key={`pin-marker-${position[0]}-${position[1]}`}
+	  content={tooltipContent}
+	  trigger={tooltipTrigger}
+	  position={tooltipPosition}
+	  maxWidth={tooltipMaxWidth}
+	  variant={tooltipVariant}
+	  size={tooltipSize}
+	>
+	  <L.Marker
+		position={position}
+		icon={icon}
+		{...leafletMarkerProps}
+	  />
+	</LeafletTooltip>
+  );
 };
 
 // React component for preview/testing
