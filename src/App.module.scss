@@ -8,9 +8,9 @@
   background-color: var(--app-bg, #{$gray-100});
   padding: $spacing-4;
   transition: $transition-base;
-  
+
   @include dark-mode {
-	background-color: var(--app-bg-dark, #{$gray-900});
+    background-color: var(--app-bg-dark, #{$gray-900});
   }
 }
 
@@ -28,18 +28,18 @@
   font-weight: $font-weight-bold;
   color: var(--app-title-color, #{$gray-800});
   margin-bottom: $spacing-2;
-  
+
   @include dark-mode {
-	color: var(--app-title-color-dark, #{$gray-100});
+    color: var(--app-title-color-dark, #{$gray-100});
   }
 }
 
 .subtitle {
   color: var(--app-subtitle-color, #{$gray-600});
   margin: 0;
-  
+
   @include dark-mode {
-	color: var(--app-subtitle-color-dark, #{$gray-300});
+    color: var(--app-subtitle-color-dark, #{$gray-300});
   }
 }
 
@@ -57,8 +57,8 @@
   margin-top: $spacing-1;
   font-size: $font-size-sm;
   color: var(--hint-color, #{$gray-500});
-  
+
   @include dark-mode {
-	color: var(--hint-color-dark, #{$gray-400});
+    color: var(--hint-color-dark, #{$gray-400});
   }
 }

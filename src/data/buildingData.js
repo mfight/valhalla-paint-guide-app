@@ -1,812 +1,889 @@
 export const buildingData = [
-{
-	id: 'building-1',
-	buildingType: 'Keys',
-	coordinates: [27.90683638883428, -82.3374533135049],
-	units: [{ 
-		id: 301, 
-		streetNumber: 'Building 1',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		// coordinates: [27.902664066988937, -82.33930085713197],
-		colorSchemeId: 'Keys 6A'
-	}]
-},
-{
-	id: 'building-2',
-	buildingType: 'Keys',
-	coordinates: [27.907213605513345, -82.33745056513511],
-	units: [{ 
-		id: 304, 
-		streetNumber: 'Building 2',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		// coordinates: [27.902664066988937, -82.33930085713197],
-		colorSchemeId: 'Keys 8A'
-	}]
-},
-{
-	id: 'building-3',
-	buildingType: 'Keys',
-	coordinates: [27.90755277545143, -82.33744690117489],
-	units: [{ 
-		id: 305, 
-		streetNumber: 'Building 3',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		// coordinates: [27.902664066988937, -82.33930085713197],
-		colorSchemeId: 'Keys 8B'
-	}]
-},
-{
-	id: 'building-4',
-	buildingType: 'Keys',
-	coordinates: [27.907624819293453, -82.33708691275879],
-	units: [{ 
-		id: 307, 
-		streetNumber: 'Building 4',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		// coordinates: [27.902664066988937, -82.33930085713197],
-		colorSchemeId: 'Keys 6C'
-	}]
-},
-{
-	id: 'building-5',
-	buildingType: 'Keys',
-	coordinates: [27.907623200372566, -82.33670860422217],
-	units: [{ 
-		id: 310, 
-		streetNumber: 'Building 5',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		// coordinates: [27.902664066988937, -82.33930085713197],
-		colorSchemeId: 'Keys 8D'
-	}]
-},
-{
-	id: 'building-6',
-	buildingType: 'Keys',
-	coordinates: [27.907619962444503, -82.33635044772862],
-	units: [{ 
-		id: 306, 
-		streetNumber: 'Building 6',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		// coordinates: [27.902664066988937, -82.33930085713197],
-		colorSchemeId: 'Keys 8B'
-	}]
-},
-{
-	id: 'building-7',
-	buildingType: 'Keys',
-	coordinates: [27.90801562941421, -82.33694342914383],
-	units: [{ 
-		id: 308, 
-		streetNumber: 'Building 7',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 6C'
-	}]
-},
-{
-	id: 'building-8',
-	buildingType: 'Keys',
-	coordinates: [27.908011706531177, -82.33726395074608],
-	units: [{ 
-		id: 311, 
-		streetNumber: 'Building 8',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 6D'
-	}]
-},
-{
-	id: 'building-9',
-	buildingType: 'Keys',
-	coordinates: [27.908022138758184, -82.33766200749096],
-	units: [{ 
-		id: 314, 
-		streetNumber: 'Building 9',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 6B'
-	}]
-},
-{
-	id: 'building-10',
-	buildingType: 'Keys',
-	coordinates: [27.90802055339338, -82.33812404038935],
-	units: [{ 
-		id: 302, 
-		streetNumber: 'Building 10',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 6A'
-	}]
-},
-{
-	id: 'building-11',
-	buildingType: 'Keys',
-	coordinates: [27.90796075989025, -82.33868544184129],
-	units: [{ 
-		id: 316, 
-		streetNumber: 'Building 11',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 8E'
-	}]
-},
-{
-	id: 'building-12',
-	buildingType: 'Keys',
-	coordinates: [27.907599240302268, -82.33869081363689],
-	units: [{ 
-  		id: 303, 
-  		streetNumber: 'Building 12',
-  		streetName: 'Address',
-  		city: 'Riverview',
-  		state: 'FL',
-  		zipCode: '33578',
-  		colorSchemeId: 'Keys 6A'
-	}]
-},
-{
-	id: 'building-13',
-	buildingType: 'Keys',
-	coordinates: [27.90720606550226, -82.33867863911007],
-	units: [{ 
-		id: 317, 
-		streetNumber: 'Building 13',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 8E'
-	}]
-},
-{
-	id: 'building-14',
-	buildingType: 'Keys',
-	coordinates: [27.906827048723233, -82.33868995543799],
-	units: [{ 
-		id: 309, 
-		streetNumber: 'Building 14',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 6C'
-	}]
-},
-{
-	id: 'building-15',
-	buildingType: 'Keys',
-	coordinates: [27.907216065631502, -82.33822598098337],
-	units: [{ 
-		id: 312, 
-		streetNumber: 'Building 15',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 6D'
-	}]
-},
-{
-	id: 'building-16',
-	buildingType: 'Keys',
-	coordinates: [27.90756407980598, -82.33823390271426],
-	units: [{ 
-		id: 319, 
-		streetNumber: 'Building 16',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		colorSchemeId: 'Keys 8C'
-	}]
-},
-{
-	id: 'building-17',
-	buildingType: 'Keys',
-	coordinates: [27.90757308055589, -82.33789214574122],
-	units: [{ 
-		id: 315, 
-		streetNumber: 'Building 17',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
-		colorSchemeId: 'Keys 6B'
-	}]
-},
-{
-	id: 'building-18',
-	buildingType: 'Keys',
-	coordinates: [27.907208186931182, -82.33789637943981],
-	units: [{ 
-		id: 313, 
-		streetNumber: 'Building 18',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
-		colorSchemeId: 'Keys 6D'
-	}]
-},
-{
-	id: 'building-19',
-	buildingType: 'Keys',
-	coordinates: [27.906845222816653, -82.33790320204491],
-	units: [{ 
-		id: 318, 
-		streetNumber: 'Building 19',
-		streetName: 'Address',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
-		colorSchemeId: 'Keys 8E'
-	}]
-},
-{
-	id: 'building-20',
-	buildingType: 'Chase',
-	coordinates: [27.906387233194636, -82.3378873020074],
-	units: [{
-		id: 201,
-		address: 'Building 20 Address',
-		coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
-		colorSchemeId: 'Chase 6A'
-	}]
-},
-{
-	id: 'building-21',
-	buildingType: 'Chase',
-	coordinates: [27.906215984940015, -82.33742791615225],
-	units: [{ id: 202, address: 'Building 21 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-22',
-	buildingType: 'Chase',
-	coordinates: [27.905760628993345, -82.33741486490972],
-	units: [{ id: 320, address: 'Building 22 Address', colorSchemeId: 'Chase 4A' }]
-  },
-  {
-	id: 'building-23',
-	buildingType: 'Chase',
-	coordinates: [27.905407450706228, -82.33694279563584],
-	units: [{ id: 203, address: 'Building 23 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-24',
-	buildingType: 'Chase',
-	coordinates: [27.90541337641266, -82.33631515921054],
-	units: [{ id: 204, address: 'Building 24 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-25',
-	buildingType: 'Chase',
-	coordinates: [27.905163593573103, -82.33582519324605],
-	units: [{ id: 205, address: 'Building 25 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-26',
-	buildingType: 'Chase',
-	coordinates: [27.904741426139417, -82.33550914785494],
-	units: [{ id: 321, address: 'Building 26 Address', colorSchemeId: 'Chase 4A' }]
-  },
-  {
-	id: 'building-27',
-	buildingType: 'Chase',
-	coordinates: [27.904429686798593, -82.33574653053336],
-	units: [{ id: 206, address: 'Building 27 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-28',
-	buildingType: 'Chase',
-	coordinates: [27.904424945388897, -82.33637416693121],
-	units: [{ id: 207, address: 'Building 28 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-29',
-	buildingType: 'Chase',
-	coordinates: [27.904425356755628, -82.33691769875945],
-	units: [{ id: 322, address: 'Building 29 Address', colorSchemeId: 'Chase 4A' }]
-  },
-  {
-	id: 'building-30',
-	buildingType: 'Chase',
-	coordinates: [27.904425356818322, -82.33745874650127],
-	units: [{ id: 208, address: 'Building 30 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-31',
-	buildingType: 'Chase',
-	coordinates: [27.904417698796976, -82.33809385278857],
-	units: [{ id: 209, address: 'Building 31 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-32',
-	buildingType: 'Chase',
-	coordinates: [27.904867980427923, -82.33821581399675],
-	units: [{ id: 210, address: 'Building 32 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-33',
-	buildingType: 'Chase',
-	coordinates: [27.905428435332205, -82.33823072088516],
-	units: [{ id: 211, address: 'Building 33 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-34',
-	buildingType: 'Chase',
-	coordinates: [27.906012837905244, -82.33825375769845],
-	units: [{ id: 212, address: 'Building 34 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-35',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.906289034705974, -82.33866378678383],
-	units: [{ id: 101, address: 'Building 35 Address' }]
-  },
-  {
-	id: 'building-36',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [0, 0],
-	coordinates: [27.905917796713986, -82.33865159032527],
-	units: [{ id: 113, address: 'Building 36 Address' }]
-  },
-  {
-	id: 'building-37',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.90548065852746, -82.3386370348756],
-	units: [{ id: 123, address: 'Building 37 Address' }]
-  },
-  {
-	id: 'building-38',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.90500066681396, -82.338653127824],
-	units: [{ id: 135, address: 'Building 38 Address' }]
-  },
-  {
-	id: 'building-39',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.904542006022503, -82.3386705621776],
-	units: [{ id: 102, address: 'Building 39 Address' }]
-  },
-  {
-	id: 'building-40',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.903909824194784, -82.33867182680254],
-	units: [{ id: 114, address: 'Building 40 Address' }]
-  },
-  {
-	id: 'building-41',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.90354587860349, -82.33866142733497],
-	units: [{ id: 124, address: 'Building 41 Address' }]
-  },
-  {
-	id: 'building-42',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.903182565999295, -82.33865553346234],
-	units: [{ id: 136, address: 'Building 42 Address' }]
-  },
-  {
-	id: 'building-43',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.902796113560747, -82.33864464911372],
-	units: [{ id: 103, address: 'Building 43 Address' }]
-  },
-  {
-	id: 'building-44',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.90238242375953, -82.33863466077563],
-	units: [{ id: 115, address: 'Building 44 Address' }]
-  },
-  {
-	id: 'building-45',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.901911424060277, -82.33864006212424],
-	units: [{ id: 125, address: 'Building 45 Address' }]
-  },
-  {
-	id: 'building-46',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.902664066988937, -82.33930085713197],
-	units: [{ id: 137, address: 'Building 46 Address' }]
-  },
-  {
-	id: 'building-47',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.902261490529924, -82.33928645280348],
-	units: [{ id: 104, address: 'Building 47 Address' }]
-  },
-  {
-	id: 'building-48',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.901803219796456, -82.33927744929106],
-	units: [{ id: 116, address: 'Building 48 Address' }]
-  },
-  {
-	id: 'building-49',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.90127493502824, -82.3394358963046],
-	units: [{ id: 126, address: 'Building 49 Address' }]
-  },
-  {
-	id: 'building-50',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.9013942764794, -82.33853203030344],
-	units: [{ id: 138, address: 'Building 50 Address' }]
-  },
-  {
-	id: 'building-51',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.901397458942647, -82.33800987660565],
-	units: [{ id: 105, address: 'Building 51 Address' }]
-  },
-  {
-	id: 'building-52',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.90139745650194, -82.33748592151457],
-	units: [{ id: 117, address: 'Building 52 Address' }]
-  },
-  {
-	id: 'building-53',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.901397459169672, -82.33696196830621],
-	units: [{ id: 127, address: 'Building 53 Address' }]
-  },
-  {
-	id: 'building-54',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.901395868247583, -82.33643981463351],
-	units: [{ id: 139, address: 'Building 54 Address' }]
-  },
-  {
-	id: 'building-55',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.901402231993085, -82.33590325643365],
-	units: [
-	  { 
-		id: 8, 
-		streetNumber: '4906',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90136963406259, -82.33574636723026]
-	  },
-	  { 
-		id: 9, 
-		streetNumber: '4908',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.901369634296465, -82.33581074029095]
-	  },
-	  { 
-		id: 10, 
-		streetNumber: '4910',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90136844927433, -82.33586840781312]
-	  },
-	  { 
-		id: 11, 
-		streetNumber: '4912',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90137200504425, -82.33592205199152]
-	  },
-	  { 
-		id: 12, 
-		streetNumber: '4914',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.901369634778383, -82.33598508391093]
-	  },
-	  { 
-		id: 13, 
-		streetNumber: '4916',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90137911653609, -82.33604141027119]
-	  },
-	  { 
-		id: 14, 
-		streetNumber: '4918',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.90136489413974, -82.33609505446199]
-	  },
-	  { 
-		id: 15, 
-		streetNumber: '4920',
-		streetName: 'Pond Ridge Dr',
-		city: 'Riverview',
-		state: 'FL',
-		zipCode: '33578',
-		coordinates: [27.901389783547554, -82.336163450738]
-	  }
-	]
-  },
-  {
-	id: 'building-56',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.904003856182804, -82.33826015052219],
-	units: [{ id: 140, address: 'Building 56 Address' }]
-  },
-  {
-	id: 'building-57',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.903637882492422, -82.33824934701286],
-	units: [{ id: 106, address: 'Building 57 Address' }]
-  },
-  {
-	id: 'building-58',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.903225762556698, -82.33822954133552],
-	units: [{ id: 118, address: 'Building 58 Address' }]
-  },
-  {
-	id: 'building-59',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.902800911676973, -82.33822954148195],
-	units: [{ id: 128, address: 'Building 59 Address' }]
-  },
-  {
-	id: 'building-60',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.902382423786865, -82.338229541364],
-	units: [{ id: 141, address: 'Building 60 Address' }]
-  },
-  {
-	id: 'building-61',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.90190824177153, -82.33822053874553],
-	units: [{ id: 107, address: 'Building 61 Address' }]
-  },
-  {
-	id: 'building-62',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.901776170566862, -82.33776320332139],
-	units: [{ id: 129, address: 'Building 62 Address' }]
-  },
-  {
-	id: 'building-63',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.90176980586408, -82.33730406892029],
-	units: [{ id: 142, address: 'Building 63 Address' }]
-  },
-  {
-	id: 'building-64',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.90177935298683, -82.33682872865938],
-	units: [{ id: 108, address: 'Building 64 Address' }]
-  },
-  {
-	id: 'building-65',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.901770035068942, -82.33636077650385],
-	units: [{ id: 119, address: 'Building 65 Address' }]
-  },
-  {
-	id: 'building-66',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.901783390332984, -82.33587356538547],
-	units: [{ id: 130, address: 'Building 66 Address' }]
-  },
-  {
-	id: 'building-67',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.902170589537512, -82.33554727696627],
-	units: [{ id: 143, address: 'Building 67 Address' }]
-  },
-  {
-	id: 'building-68',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.9026386643078, -82.33554990537485],
-	units: [{ id: 109, address: 'Building 68 Address' }]
-  },
-  {
-	id: 'building-69',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.903105575602698, -82.33555779079914],
-	units: [{ id: 120, address: 'Building 69 Address' }]
-  },
-  {
-	id: 'building-70',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.903566677426166, -82.33555121960146],
-	units: [{ id: 131, address: 'Building 70 Address' }]
-  },
-  {
-	id: 'building-71',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.90398480338701, -82.33555253400473],
-	units: [{ id: 144, address: 'Building 71 Address' }]
-  },
-  {
-	id: 'building-72',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.904082366428053, -82.33597966947728],
-	units: [{ id: 110, address: 'Building 72 Address' }]
-  },
-  {
-	id: 'building-73',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.904067267913153, -82.33638314897073],
-	units: [{ id: 121, address: 'Building 73 Address' }]
-  },
-  {
-	id: 'building-74',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.90407075171422, -82.33684445549093],
-	units: [{ id: 132, address: 'Building 74 Address' }]
-  },
-  {
-	id: 'building-75',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.904064944980725, -82.33735176204554],
-	units: [{ id: 145, address: 'Building 75 Address' }]
-  },
-  {
-	id: 'building-76',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.904070751119136, -82.33783804057322],
-	units: [{ id: 111, address: 'Building 76 Address' }]
-  },
-  {
-	id: 'building-77',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.902496979754527, -82.33510678900554],
-	units: [{ id: 133, address: 'Building 77 Address' }]
-  },
-  {
-	id: 'building-78',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.902976736208146, -82.33510449535736],
-	units: [{ id: 146, address: 'Building 78 Address' }]
-  },
-  {
-	id: 'building-79',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 101',
-	coordinates: [27.903436191771164, -82.33510657091232],
-	units: [{ id: 112, address: 'Building 79 Address' }]
-  },
-  {
-	id: 'building-80',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 102',
-	coordinates: [27.90389656243266, -82.33509826921953],
-	units: [{ id: 122, address: 'Building 80 Address' }]
-  },
-  {
-	id: 'building-81',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 103',
-	coordinates: [27.904315663052415, -82.33510345776334],
-	units: [{ id: 134, address: 'Building 81 Address' }]
-  },
-  {
-	id: 'building-82',
-	buildingType: 'Bay',
-	colorSchemeId: 'Bay 104',
-	coordinates: [27.904730651842648, -82.33512360746407],
-	units: [{ id: 147, address: 'Building 82 Address' }]
-  },
-  {
-	id: 'building-83',
-	buildingType: 'Chase',
-	coordinates:[27.905209446308636, -82.33531255780393],
-	units: [{ id: 323, address: 'Building 83 Address', colorSchemeId: 'Chase 4A' }]
-  },
-  {
-	id: 'building-84',
-	buildingType: 'Chase',
-	coordinates:[27.905536836488885, -82.33566123272604],
-	units: [{ id: 213, address: 'Building 84 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-85',
-	buildingType: 'Chase',
-	coordinates:[27.905764987931892, -82.3363222616213],
-	units: [{ id: 214, address: 'Building 85 Address', colorSchemeId: 'Chase 6A' }]
-  },
-  {
-	id: 'building-86',
-	buildingType: 'Chase',
-	coordinates:[27.905763160260463, -82.33686523079304],
-	units: [{ id: 324, address: 'Building 86 Address', colorSchemeId: 'Chase 4A' }]
-  },
-  {
-	id: 'building-87',
-	buildingType: 'Chase',
-	coordinates:[27.906147618726198, -82.33702742836388],
-	units: [{ id: 215, address: 'Building 87 Address', colorSchemeId: 'Chase 6A' }]
-  }
+  {
+    id: 'building-1',
+    buildingType: 'Keys',
+    coordinates: [27.90683638883428, -82.3374533135049],
+    units: [
+      {
+        id: 301,
+        streetNumber: 'Building 1',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        // coordinates: [27.902664066988937, -82.33930085713197],
+        colorSchemeId: 'Keys 6A',
+      },
+    ],
+  },
+  {
+    id: 'building-2',
+    buildingType: 'Keys',
+    coordinates: [27.907213605513345, -82.33745056513511],
+    units: [
+      {
+        id: 304,
+        streetNumber: 'Building 2',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        // coordinates: [27.902664066988937, -82.33930085713197],
+        colorSchemeId: 'Keys 8A',
+      },
+    ],
+  },
+  {
+    id: 'building-3',
+    buildingType: 'Keys',
+    coordinates: [27.90755277545143, -82.33744690117489],
+    units: [
+      {
+        id: 305,
+        streetNumber: 'Building 3',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        // coordinates: [27.902664066988937, -82.33930085713197],
+        colorSchemeId: 'Keys 8B',
+      },
+    ],
+  },
+  {
+    id: 'building-4',
+    buildingType: 'Keys',
+    coordinates: [27.907624819293453, -82.33708691275879],
+    units: [
+      {
+        id: 307,
+        streetNumber: 'Building 4',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        // coordinates: [27.902664066988937, -82.33930085713197],
+        colorSchemeId: 'Keys 6C',
+      },
+    ],
+  },
+  {
+    id: 'building-5',
+    buildingType: 'Keys',
+    coordinates: [27.907623200372566, -82.33670860422217],
+    units: [
+      {
+        id: 310,
+        streetNumber: 'Building 5',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        // coordinates: [27.902664066988937, -82.33930085713197],
+        colorSchemeId: 'Keys 8D',
+      },
+    ],
+  },
+  {
+    id: 'building-6',
+    buildingType: 'Keys',
+    coordinates: [27.907619962444503, -82.33635044772862],
+    units: [
+      {
+        id: 306,
+        streetNumber: 'Building 6',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        // coordinates: [27.902664066988937, -82.33930085713197],
+        colorSchemeId: 'Keys 8B',
+      },
+    ],
+  },
+  {
+    id: 'building-7',
+    buildingType: 'Keys',
+    coordinates: [27.90801562941421, -82.33694342914383],
+    units: [
+      {
+        id: 308,
+        streetNumber: 'Building 7',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6C',
+      },
+    ],
+  },
+  {
+    id: 'building-8',
+    buildingType: 'Keys',
+    coordinates: [27.908011706531177, -82.33726395074608],
+    units: [
+      {
+        id: 311,
+        streetNumber: 'Building 8',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6D',
+      },
+    ],
+  },
+  {
+    id: 'building-9',
+    buildingType: 'Keys',
+    coordinates: [27.908022138758184, -82.33766200749096],
+    units: [
+      {
+        id: 314,
+        streetNumber: 'Building 9',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6B',
+      },
+    ],
+  },
+  {
+    id: 'building-10',
+    buildingType: 'Keys',
+    coordinates: [27.90802055339338, -82.33812404038935],
+    units: [
+      {
+        id: 302,
+        streetNumber: 'Building 10',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6A',
+      },
+    ],
+  },
+  {
+    id: 'building-11',
+    buildingType: 'Keys',
+    coordinates: [27.90796075989025, -82.33868544184129],
+    units: [
+      {
+        id: 316,
+        streetNumber: 'Building 11',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 8E',
+      },
+    ],
+  },
+  {
+    id: 'building-12',
+    buildingType: 'Keys',
+    coordinates: [27.907599240302268, -82.33869081363689],
+    units: [
+      {
+        id: 303,
+        streetNumber: 'Building 12',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6A',
+      },
+    ],
+  },
+  {
+    id: 'building-13',
+    buildingType: 'Keys',
+    coordinates: [27.90720606550226, -82.33867863911007],
+    units: [
+      {
+        id: 317,
+        streetNumber: 'Building 13',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 8E',
+      },
+    ],
+  },
+  {
+    id: 'building-14',
+    buildingType: 'Keys',
+    coordinates: [27.906827048723233, -82.33868995543799],
+    units: [
+      {
+        id: 309,
+        streetNumber: 'Building 14',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6C',
+      },
+    ],
+  },
+  {
+    id: 'building-15',
+    buildingType: 'Keys',
+    coordinates: [27.907216065631502, -82.33822598098337],
+    units: [
+      {
+        id: 312,
+        streetNumber: 'Building 15',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 6D',
+      },
+    ],
+  },
+  {
+    id: 'building-16',
+    buildingType: 'Keys',
+    coordinates: [27.90756407980598, -82.33823390271426],
+    units: [
+      {
+        id: 319,
+        streetNumber: 'Building 16',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        colorSchemeId: 'Keys 8C',
+      },
+    ],
+  },
+  {
+    id: 'building-17',
+    buildingType: 'Keys',
+    coordinates: [27.90757308055589, -82.33789214574122],
+    units: [
+      {
+        id: 315,
+        streetNumber: 'Building 17',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
+        colorSchemeId: 'Keys 6B',
+      },
+    ],
+  },
+  {
+    id: 'building-18',
+    buildingType: 'Keys',
+    coordinates: [27.907208186931182, -82.33789637943981],
+    units: [
+      {
+        id: 313,
+        streetNumber: 'Building 18',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
+        colorSchemeId: 'Keys 6D',
+      },
+    ],
+  },
+  {
+    id: 'building-19',
+    buildingType: 'Keys',
+    coordinates: [27.906845222816653, -82.33790320204491],
+    units: [
+      {
+        id: 318,
+        streetNumber: 'Building 19',
+        streetName: 'Address',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
+        colorSchemeId: 'Keys 8E',
+      },
+    ],
+  },
+  {
+    id: 'building-20',
+    buildingType: 'Chase',
+    coordinates: [27.906387233194636, -82.3378873020074],
+    units: [
+      {
+        id: 201,
+        address: 'Building 20 Address',
+        coordinates: [27.90186699819714, -82.33602233229566], // Add to each unit
+        colorSchemeId: 'Chase 6A',
+      },
+    ],
+  },
+  {
+    id: 'building-21',
+    buildingType: 'Chase',
+    coordinates: [27.906215984940015, -82.33742791615225],
+    units: [
+      { id: 202, address: 'Building 21 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-22',
+    buildingType: 'Chase',
+    coordinates: [27.905760628993345, -82.33741486490972],
+    units: [
+      { id: 320, address: 'Building 22 Address', colorSchemeId: 'Chase 4A' },
+    ],
+  },
+  {
+    id: 'building-23',
+    buildingType: 'Chase',
+    coordinates: [27.905407450706228, -82.33694279563584],
+    units: [
+      { id: 203, address: 'Building 23 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-24',
+    buildingType: 'Chase',
+    coordinates: [27.90541337641266, -82.33631515921054],
+    units: [
+      { id: 204, address: 'Building 24 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-25',
+    buildingType: 'Chase',
+    coordinates: [27.905163593573103, -82.33582519324605],
+    units: [
+      { id: 205, address: 'Building 25 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-26',
+    buildingType: 'Chase',
+    coordinates: [27.904741426139417, -82.33550914785494],
+    units: [
+      { id: 321, address: 'Building 26 Address', colorSchemeId: 'Chase 4A' },
+    ],
+  },
+  {
+    id: 'building-27',
+    buildingType: 'Chase',
+    coordinates: [27.904429686798593, -82.33574653053336],
+    units: [
+      { id: 206, address: 'Building 27 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-28',
+    buildingType: 'Chase',
+    coordinates: [27.904424945388897, -82.33637416693121],
+    units: [
+      { id: 207, address: 'Building 28 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-29',
+    buildingType: 'Chase',
+    coordinates: [27.904425356755628, -82.33691769875945],
+    units: [
+      { id: 322, address: 'Building 29 Address', colorSchemeId: 'Chase 4A' },
+    ],
+  },
+  {
+    id: 'building-30',
+    buildingType: 'Chase',
+    coordinates: [27.904425356818322, -82.33745874650127],
+    units: [
+      { id: 208, address: 'Building 30 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-31',
+    buildingType: 'Chase',
+    coordinates: [27.904417698796976, -82.33809385278857],
+    units: [
+      { id: 209, address: 'Building 31 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-32',
+    buildingType: 'Chase',
+    coordinates: [27.904867980427923, -82.33821581399675],
+    units: [
+      { id: 210, address: 'Building 32 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-33',
+    buildingType: 'Chase',
+    coordinates: [27.905428435332205, -82.33823072088516],
+    units: [
+      { id: 211, address: 'Building 33 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-34',
+    buildingType: 'Chase',
+    coordinates: [27.906012837905244, -82.33825375769845],
+    units: [
+      { id: 212, address: 'Building 34 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-35',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.906289034705974, -82.33866378678383],
+    units: [{ id: 101, address: 'Building 35 Address' }],
+  },
+  {
+    id: 'building-36',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.905917796713986, -82.33865159032527],
+    units: [{ id: 113, address: 'Building 36 Address' }],
+  },
+  {
+    id: 'building-37',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.90548065852746, -82.3386370348756],
+    units: [{ id: 123, address: 'Building 37 Address' }],
+  },
+  {
+    id: 'building-38',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.90500066681396, -82.338653127824],
+    units: [{ id: 135, address: 'Building 38 Address' }],
+  },
+  {
+    id: 'building-39',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.904542006022503, -82.3386705621776],
+    units: [{ id: 102, address: 'Building 39 Address' }],
+  },
+  {
+    id: 'building-40',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.903909824194784, -82.33867182680254],
+    units: [{ id: 114, address: 'Building 40 Address' }],
+  },
+  {
+    id: 'building-41',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.90354587860349, -82.33866142733497],
+    units: [{ id: 124, address: 'Building 41 Address' }],
+  },
+  {
+    id: 'building-42',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.903182565999295, -82.33865553346234],
+    units: [{ id: 136, address: 'Building 42 Address' }],
+  },
+  {
+    id: 'building-43',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.902796113560747, -82.33864464911372],
+    units: [{ id: 103, address: 'Building 43 Address' }],
+  },
+  {
+    id: 'building-44',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.90238242375953, -82.33863466077563],
+    units: [{ id: 115, address: 'Building 44 Address' }],
+  },
+  {
+    id: 'building-45',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.901911424060277, -82.33864006212424],
+    units: [{ id: 125, address: 'Building 45 Address' }],
+  },
+  {
+    id: 'building-46',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.902664066988937, -82.33930085713197],
+    units: [{ id: 137, address: 'Building 46 Address' }],
+  },
+  {
+    id: 'building-47',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.902261490529924, -82.33928645280348],
+    units: [{ id: 104, address: 'Building 47 Address' }],
+  },
+  {
+    id: 'building-48',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.901803219796456, -82.33927744929106],
+    units: [{ id: 116, address: 'Building 48 Address' }],
+  },
+  {
+    id: 'building-49',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.90127493502824, -82.3394358963046],
+    units: [{ id: 126, address: 'Building 49 Address' }],
+  },
+  {
+    id: 'building-50',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.9013942764794, -82.33853203030344],
+    units: [{ id: 138, address: 'Building 50 Address' }],
+  },
+  {
+    id: 'building-51',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.901397458942647, -82.33800987660565],
+    units: [{ id: 105, address: 'Building 51 Address' }],
+  },
+  {
+    id: 'building-52',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.90139745650194, -82.33748592151457],
+    units: [{ id: 117, address: 'Building 52 Address' }],
+  },
+  {
+    id: 'building-53',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.901397459169672, -82.33696196830621],
+    units: [{ id: 127, address: 'Building 53 Address' }],
+  },
+  {
+    id: 'building-54',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.901395868247583, -82.33643981463351],
+    units: [{ id: 139, address: 'Building 54 Address' }],
+  },
+  {
+    id: 'building-55',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.901402231993085, -82.33590325643365],
+    units: [
+      {
+        id: 8,
+        streetNumber: '4906',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90136963406259, -82.33574636723026],
+      },
+      {
+        id: 9,
+        streetNumber: '4908',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.901369634296465, -82.33581074029095],
+      },
+      {
+        id: 10,
+        streetNumber: '4910',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90136844927433, -82.33586840781312],
+      },
+      {
+        id: 11,
+        streetNumber: '4912',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90137200504425, -82.33592205199152],
+      },
+      {
+        id: 12,
+        streetNumber: '4914',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.901369634778383, -82.33598508391093],
+      },
+      {
+        id: 13,
+        streetNumber: '4916',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90137911653609, -82.33604141027119],
+      },
+      {
+        id: 14,
+        streetNumber: '4918',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.90136489413974, -82.33609505446199],
+      },
+      {
+        id: 15,
+        streetNumber: '4920',
+        streetName: 'Pond Ridge Dr',
+        city: 'Riverview',
+        state: 'FL',
+        zipCode: '33578',
+        coordinates: [27.901389783547554, -82.336163450738],
+      },
+    ],
+  },
+  {
+    id: 'building-56',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.904003856182804, -82.33826015052219],
+    units: [{ id: 140, address: 'Building 56 Address' }],
+  },
+  {
+    id: 'building-57',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.903637882492422, -82.33824934701286],
+    units: [{ id: 106, address: 'Building 57 Address' }],
+  },
+  {
+    id: 'building-58',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.903225762556698, -82.33822954133552],
+    units: [{ id: 118, address: 'Building 58 Address' }],
+  },
+  {
+    id: 'building-59',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.902800911676973, -82.33822954148195],
+    units: [{ id: 128, address: 'Building 59 Address' }],
+  },
+  {
+    id: 'building-60',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.902382423786865, -82.338229541364],
+    units: [{ id: 141, address: 'Building 60 Address' }],
+  },
+  {
+    id: 'building-61',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.90190824177153, -82.33822053874553],
+    units: [{ id: 107, address: 'Building 61 Address' }],
+  },
+  {
+    id: 'building-62',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.901776170566862, -82.33776320332139],
+    units: [{ id: 129, address: 'Building 62 Address' }],
+  },
+  {
+    id: 'building-63',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.90176980586408, -82.33730406892029],
+    units: [{ id: 142, address: 'Building 63 Address' }],
+  },
+  {
+    id: 'building-64',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.90177935298683, -82.33682872865938],
+    units: [{ id: 108, address: 'Building 64 Address' }],
+  },
+  {
+    id: 'building-65',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.901770035068942, -82.33636077650385],
+    units: [{ id: 119, address: 'Building 65 Address' }],
+  },
+  {
+    id: 'building-66',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.901783390332984, -82.33587356538547],
+    units: [{ id: 130, address: 'Building 66 Address' }],
+  },
+  {
+    id: 'building-67',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.902170589537512, -82.33554727696627],
+    units: [{ id: 143, address: 'Building 67 Address' }],
+  },
+  {
+    id: 'building-68',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.9026386643078, -82.33554990537485],
+    units: [{ id: 109, address: 'Building 68 Address' }],
+  },
+  {
+    id: 'building-69',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.903105575602698, -82.33555779079914],
+    units: [{ id: 120, address: 'Building 69 Address' }],
+  },
+  {
+    id: 'building-70',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.903566677426166, -82.33555121960146],
+    units: [{ id: 131, address: 'Building 70 Address' }],
+  },
+  {
+    id: 'building-71',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.90398480338701, -82.33555253400473],
+    units: [{ id: 144, address: 'Building 71 Address' }],
+  },
+  {
+    id: 'building-72',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.904082366428053, -82.33597966947728],
+    units: [{ id: 110, address: 'Building 72 Address' }],
+  },
+  {
+    id: 'building-73',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.904067267913153, -82.33638314897073],
+    units: [{ id: 121, address: 'Building 73 Address' }],
+  },
+  {
+    id: 'building-74',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.90407075171422, -82.33684445549093],
+    units: [{ id: 132, address: 'Building 74 Address' }],
+  },
+  {
+    id: 'building-75',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.904064944980725, -82.33735176204554],
+    units: [{ id: 145, address: 'Building 75 Address' }],
+  },
+  {
+    id: 'building-76',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.904070751119136, -82.33783804057322],
+    units: [{ id: 111, address: 'Building 76 Address' }],
+  },
+  {
+    id: 'building-77',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.902496979754527, -82.33510678900554],
+    units: [{ id: 133, address: 'Building 77 Address' }],
+  },
+  {
+    id: 'building-78',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.902976736208146, -82.33510449535736],
+    units: [{ id: 146, address: 'Building 78 Address' }],
+  },
+  {
+    id: 'building-79',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 101',
+    coordinates: [27.903436191771164, -82.33510657091232],
+    units: [{ id: 112, address: 'Building 79 Address' }],
+  },
+  {
+    id: 'building-80',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 102',
+    coordinates: [27.90389656243266, -82.33509826921953],
+    units: [{ id: 122, address: 'Building 80 Address' }],
+  },
+  {
+    id: 'building-81',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 103',
+    coordinates: [27.904315663052415, -82.33510345776334],
+    units: [{ id: 134, address: 'Building 81 Address' }],
+  },
+  {
+    id: 'building-82',
+    buildingType: 'Bay',
+    colorSchemeId: 'Bay 104',
+    coordinates: [27.904730651842648, -82.33512360746407],
+    units: [{ id: 147, address: 'Building 82 Address' }],
+  },
+  {
+    id: 'building-83',
+    buildingType: 'Chase',
+    coordinates: [27.905209446308636, -82.33531255780393],
+    units: [
+      { id: 323, address: 'Building 83 Address', colorSchemeId: 'Chase 4A' },
+    ],
+  },
+  {
+    id: 'building-84',
+    buildingType: 'Chase',
+    coordinates: [27.905536836488885, -82.33566123272604],
+    units: [
+      { id: 213, address: 'Building 84 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-85',
+    buildingType: 'Chase',
+    coordinates: [27.905764987931892, -82.3363222616213],
+    units: [
+      { id: 214, address: 'Building 85 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
+  {
+    id: 'building-86',
+    buildingType: 'Chase',
+    coordinates: [27.905763160260463, -82.33686523079304],
+    units: [
+      { id: 324, address: 'Building 86 Address', colorSchemeId: 'Chase 4A' },
+    ],
+  },
+  {
+    id: 'building-87',
+    buildingType: 'Chase',
+    coordinates: [27.906147618726198, -82.33702742836388],
+    units: [
+      { id: 215, address: 'Building 87 Address', colorSchemeId: 'Chase 6A' },
+    ],
+  },
 ];

@@ -10,20 +10,22 @@
 // -----------------------------------------------------------------------------
 @mixin focus-ring($color: $primary, $offset: 2px) {
   outline: none;
-  box-shadow: 0 0 0 $offset $color, 0 0 0 calc($offset + 2px) rgba($color, 0.2);
+  box-shadow:
+    0 0 0 $offset $color,
+    0 0 0 calc($offset + 2px) rgba($color, 0.2);
 }
 
 @mixin focus-visible($color: $primary) {
   &:focus {
-	@include focus-ring($color);
+    @include focus-ring($color);
   }
-  
+
   &:focus:not(:focus-visible) {
-	box-shadow: none;
+    box-shadow: none;
   }
-  
+
   &:focus-visible {
-	@include focus-ring($color);
+    @include focus-ring($color);
   }
 }
 
@@ -39,26 +41,26 @@
   text-decoration: none;
   transition: $transition-base;
   user-select: none;
-  
+
   &:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
 @mixin button-size($size: 'md') {
   @if $size == 'sm' {
-	padding: $spacing-2 $spacing-3;
-	font-size: $font-size-sm;
-	border-radius: $radius-md;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-size-sm;
+    border-radius: $radius-md;
   } @else if $size == 'md' {
-	padding: $spacing-2 $spacing-4;
-	font-size: $font-size-base;
-	border-radius: $radius-md;
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-base;
+    border-radius: $radius-md;
   } @else if $size == 'lg' {
-	padding: $spacing-3 $spacing-6;
-	font-size: $font-size-lg;
-	border-radius: $radius-lg;
+    padding: $spacing-3 $spacing-6;
+    font-size: $font-size-lg;
+    border-radius: $radius-lg;
   }
 }
 
@@ -105,25 +107,25 @@
 // -----------------------------------------------------------------------------
 @mixin mobile {
   @media (max-width: #{$breakpoint-sm - 1px}) {
-	@content;
+    @content;
   }
 }
 
 @mixin tablet {
   @media (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-lg - 1px}) {
-	@content;
+    @content;
   }
 }
 
 @mixin desktop {
   @media (min-width: $breakpoint-lg) {
-	@content;
+    @content;
   }
 }
 
 @mixin responsive($breakpoint) {
   @media (min-width: $breakpoint) {
-	@content;
+    @content;
   }
 }
 
@@ -131,19 +133,19 @@
 // -----------------------------------------------------------------------------
 @mixin dark-mode {
   @media (prefers-color-scheme: dark) {
-	@content;
+    @content;
   }
 }
 
 @mixin high-contrast {
   @media (prefers-contrast: high) {
-	@content;
+    @content;
   }
 }
 
 @mixin reduced-motion {
   @media (prefers-reduced-motion: reduce) {
-	@content;
+    @content;
   }
 }
 
@@ -152,11 +154,11 @@
 @mixin card($elevated: false) {
   background: $white;
   border-radius: $radius-lg;
-  
+
   @if $elevated {
-	box-shadow: $shadow-lg;
+    box-shadow: $shadow-lg;
   } @else {
-	box-shadow: $shadow-base;
+    box-shadow: $shadow-base;
   }
 }
 
@@ -168,13 +170,13 @@
   border: 1px solid $gray-300;
   border-radius: $radius-md;
   transition: $transition-base;
-  
+
   &:focus {
-	@include focus-ring($primary);
-	border-color: $primary;
+    @include focus-ring($primary);
+    border-color: $primary;
   }
-  
+
   &::placeholder {
-	color: $gray-400;
+    color: $gray-400;
   }
 }
