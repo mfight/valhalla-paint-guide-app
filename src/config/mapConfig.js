@@ -77,7 +77,7 @@ export const MAP_CONFIG = {
 
   // Map settings
   defaultCenter: [27.90186699819714, -82.33602233229566], // Valhalla neighborhood
-  defaultZoom: 17,
+  defaultZoom: 16,
   detailZoom: 18,
 
   // Marker settings

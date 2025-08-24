@@ -22,6 +22,7 @@ import { createBadgeIcon } from './components/maps/LeafletBadgeMarker';
 import { createPinIcon } from './components/maps/LeafletPinMarker';
 
 // Data
+import { getPaintByCode } from './data/PaintData-SherwinWilliams';
 import { colorSchemes } from './data/colorSchemes';
 import { buildingData } from './data/buildingData';
 
@@ -70,6 +71,20 @@ const allUnits = buildingData.flatMap((building) => {
         ? `${unit.streetNumber} ${unit.streetName}, ${unit.city} ${unit.state} ${unit.zipCode}`
         : unit.address || 'Address not available';
 
+    // Create backward-compatible paintCodes object for existing components
+    const paintCodes = {};
+    if (colorScheme) {
+      Object.entries(colorScheme.paintCodes).forEach(([key, paintCode]) => {
+        const paintInfo = getPaintByCode(paintCode);
+        if (paintInfo) {
+          paintCodes[key] = {
+            ...paintInfo,
+            color: paintInfo.hex, // Add backward compatibility
+          };
+        }
+      });
+    }
+
     return {
       ...unit,
       buildingId: building.id,
@@ -79,7 +94,8 @@ const allUnits = buildingData.flatMap((building) => {
       coordinates: unit.coordinates || building.coordinates,
       buildingCoordinates: building.coordinates,
       colorScheme: colorScheme ? colorScheme.name : 'Unknown',
-      paintCodes: colorScheme ? colorScheme.paintCodes : {},
+      paintCodes, // For backward compatibility with ColorSwatch components
+      colorSchemeData: colorScheme, // Full color scheme data for new components
     };
   });
 });
@@ -256,8 +272,8 @@ const NeighborhoodMap = memo(
     // Fallback if Leaflet isn't working
     if (mapError || !MapContainer) {
       return (
-        <div className="bg-white rounded-lg shadow border mb-4">
-          <div className="p-4 border-b border-gray-200">
+        <div className={styles.mapContainer}>
+          <div className={styles.mapHeader}>
             <h2 className="text-lg font-semibold text-gray-800 flex items-center">
               <Home className="mr-2 text-blue-600" />
               Valhalla Neighborhood
@@ -279,12 +295,12 @@ const NeighborhoodMap = memo(
     }
 
     return (
-      <div className="bg-white rounded-lg shadow border mb-4">
-        <div className="p-4 border-b border-gray-200">
+      <div className={styles.mapContainer}>
+        <div className={styles.mapHeader}>
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-lg font-semibold text-gray-800">Valhalla</h2>
-              <p className="text-sm text-gray-600">Riverview, FL</p>
+              <h2 className={styles.mapTitle}>Valhalla</h2>
+              <p className={styles.mapSubtitle}>Riverview, FL</p>
             </div>
 
             <BuildingTypeFilter
@@ -435,7 +451,7 @@ const NeighborhoodMap = memo(
                                       height: '16px',
                                       borderRadius: '3px',
                                       backgroundColor:
-                                        paintInfo?.color || '#e5e7eb',
+                                        paintInfo?.hex || '#e5e7eb',
                                       border: '1px solid #d1d5db',
                                       flexShrink: 0,
                                     }}
@@ -479,8 +495,8 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
 
   if (mapError || !MapContainer) {
     return (
-      <div className="bg-white rounded-lg shadow border mb-4">
-        <div className="p-4 bg-white border-b">
+      <div className={styles.mapContainer}>
+        <div className={styles.mapHeader}>
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-gray-800">
@@ -492,7 +508,8 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
             </div>
             <Button
               variant="icon"
-              size="xl"
+              size="md"
+              padding="none"
               onClick={() => setSelectedUnit(null)}
               aria-label="Close unit details"
             >
@@ -508,26 +525,25 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
           className="bg-gray-50"
         />
 
-        <PaintCodeSection paintCodes={unit.paintCodes} />
+        <PaintCodeSection colorScheme={unit.colorSchemeData} />
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-lg shadow border mb-4">
-      <div className="p-4 bg-white border-b">
+    <div className={styles.mapContainer}>
+      <div className={styles.unitDetailHeader}>
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold text-gray-800">
-              {unit.fullAddress}
-            </h2>
-            <p className="text-gray-600">
-              {unit.buildingType} • {unit.colorScheme}
+            <h2 className={styles.unitDetailTitle}>{unit.fullAddress}</h2>
+            <p className={styles.unitDetailSubtitle}>
+              {unit.buildingType} Unit | {unit.colorScheme}
             </p>
           </div>
           <Button
             variant="icon"
-            size="xl"
+            size="md"
+            padding="none"
             onClick={() => setSelectedUnit(null)}
             aria-label="Close unit details"
           >
@@ -573,38 +589,56 @@ const UnitDetailMap = memo(({ unit, setSelectedUnit }) => {
         </MapContainer>
       </div>
 
-      <PaintCodeSection paintCodes={unit.paintCodes} />
+      <PaintCodeSection colorScheme={unit.colorSchemeData} />
     </div>
   );
 });
 
-// Extracted paint code section component to reduce duplication
-const PaintCodeSection = memo(({ paintCodes }) => (
-  <div className="p-4 border-t border-gray-200">
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <SWPaintCodeCard
-        label="Body (Primary)"
-        paintInfo={paintCodes.bodyPrimary}
-      />
-      <SWPaintCodeCard
-        label="Body (Secondary)"
-        paintInfo={paintCodes.bodySecondary}
-      />
-      <SWPaintCodeCard label="Trim" paintInfo={paintCodes.trim} />
-      <SWPaintCodeCard label="Door" paintInfo={paintCodes.door} />
-    </div>
+// Paint code section component
+const PaintCodeSection = memo(({ colorScheme }) => {
+  if (!colorScheme) {
+    return null;
+  }
 
-    <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-      <h3 className="font-semibold text-blue-800 mb-2">
-        Sherwin-Williams Paint Codes
-      </h3>
-      <p className="text-blue-700 text-sm">
-        Take these codes to any Sherwin-Williams store for exact color matching.
-        Consider ordering samples before making your final purchase.
-      </p>
+  return (
+    <div className={styles.paintCodeSection}>
+      <div className="mb-6">
+        <h3 className={styles.paintCodeTitle}>Sherwin-Williams Paint Codes</h3>
+        <p className={styles.paintCodeDescription}>
+          Take these codes to any Sherwin-Williams store for exact color
+          matching. Consider ordering samples before making your final purchase.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <SWPaintCodeCard
+          label="Body (Primary)"
+          paintCode={colorScheme.paintCodes.bodyPrimary}
+          type={colorScheme.type}
+          finish={colorScheme.finish}
+        />
+        <SWPaintCodeCard
+          label="Body (Secondary)"
+          paintCode={colorScheme.paintCodes.bodySecondary}
+          type={colorScheme.type}
+          finish={colorScheme.finish}
+        />
+        <SWPaintCodeCard
+          label="Trim"
+          paintCode={colorScheme.paintCodes.trim}
+          type={colorScheme.type}
+          finish={colorScheme.finish}
+        />
+        <SWPaintCodeCard
+          label="Door"
+          paintCode={colorScheme.paintCodes.door}
+          type={colorScheme.type}
+          finish={colorScheme.finish}
+        />
+      </div>
     </div>
-  </div>
-));
+  );
+});
 
 const UnitDetailView = memo(({ unit, setSelectedUnit }) => (
   <div className="space-y-4">

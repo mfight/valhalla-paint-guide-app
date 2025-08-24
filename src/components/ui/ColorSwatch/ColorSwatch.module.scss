@@ -1,22 +1,22 @@
-/* components/ui/ColorSwatch/ColorSwatch.module.scss - Simplified with tooltip extracted */
+/* components/ui/ColorSwatch/ColorSwatch.module.scss */
 
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
+// Base swatch styles
 .swatch {
-  position: relative;
-  border-radius: var(--swatch-radius, #{$radius-base});
-  border: 1px solid var(--swatch-border, #{$gray-300});
-  cursor: pointer;
+  display: inline-block;
+  border: 2px solid var(--swatch-border, #{$gray-200});
+  cursor: default;
   transition: $transition-base;
-  flex-shrink: 0;
+  position: relative;
 
-  &:hover {
-    box-shadow: var(--swatch-hover-shadow, #{$shadow-lg});
+  &:focus-visible {
+    @include focus-ring(var(--swatch-focus-ring, #{$primary}));
   }
 
-  &:focus {
-    @include focus-ring(var(--swatch-focus-ring, #{$primary}));
+  @include dark-mode {
+    border-color: var(--swatch-border-dark, #{$gray-600});
   }
 
   @include reduced-motion {
@@ -25,95 +25,86 @@
 }
 
 .swatchClickable {
-  // No additional styles needed
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: var(--swatch-hover-border, #{$primary});
+    z-index: 1;
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+
+  @include reduced-motion {
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
 }
 
-// Size variants with responsive border radius
+// Size variants
 .sizeSmall {
   width: 1rem;
   height: 1rem;
-
-  &.shapeSquare {
-    border-radius: $radius-sm;
-  }
-
-  &.shapeRounded {
-    border-radius: $radius-base;
-  }
 }
 
 .sizeMedium {
-  width: 1.5rem;
-  height: 1.5rem;
-
-  &.shapeSquare {
-    border-radius: $radius-base;
-  }
-
-  &.shapeRounded {
-    border-radius: $radius-md;
-  }
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .sizeLarge {
-  width: 2rem;
-  height: 2rem;
-
-  &.shapeSquare {
-    border-radius: $radius-md;
-  }
-
-  &.shapeRounded {
-    border-radius: $radius-lg;
-  }
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .sizeXLarge {
-  width: 3rem;
-  height: 3rem;
-
-  &.shapeSquare {
-    border-radius: $radius-lg;
-  }
-
-  &.shapeRounded {
-    border-radius: $radius-xl;
-  }
+  width: 2rem;
+  height: 2rem;
 }
 
 // Shape variants
-.shapeCircle {
-  border-radius: $radius-full;
+.shapeSquare {
+  border-radius: 0;
 }
 
-// Tooltip content styles (used by the Tooltip component)
+.shapeRounded {
+  border-radius: $radius-sm;
+}
+
+.shapeCircle {
+  border-radius: 50%;
+}
+
+// Tooltip content styles
 .tooltipContent {
   text-align: center;
-  min-width: 12rem;
+  min-width: 180px;
 }
 
 .tooltipLabel {
-  margin-bottom: $spacing-1;
+  margin-bottom: $spacing-2;
 
   .labelText {
-    font-size: $font-size-xs;
-    font-weight: $font-weight-bold;
-    color: var(--tooltip-label-color, #{$gray-500});
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+    color: var(--tooltip-label-color, #{$gray-700});
 
     @include dark-mode {
-      color: var(--tooltip-label-color-dark, #{$gray-400});
+      color: var(--tooltip-label-color-dark, #{$gray-200});
     }
   }
 }
 
 .tooltipSwatch {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: $radius-base;
-  border: 1px solid var(--tooltip-swatch-border, #{$gray-200});
-  margin-bottom: $spacing-1;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--tooltip-swatch-border, #{$gray-200});
+  border-radius: $radius-md;
+  margin: 0 auto $spacing-2;
 
   @include dark-mode {
     border-color: var(--tooltip-swatch-border-dark, #{$gray-600});
@@ -121,14 +112,13 @@
 }
 
 .tooltipBrand {
-  margin-bottom: $spacing-1;
+  margin-bottom: $spacing-2;
 
   .brandText {
     font-size: $font-size-xs;
-    font-weight: $font-weight-bold;
     color: var(--tooltip-brand-color, #{$gray-500});
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.5px;
 
     @include dark-mode {
       color: var(--tooltip-brand-color-dark, #{$gray-400});
@@ -137,24 +127,70 @@
 }
 
 .tooltipInfo {
-  .paintCode {
-    font-weight: $font-weight-bold;
-    font-size: $font-size-lg;
-    color: var(--tooltip-code-color, #{$gray-800});
-    margin-bottom: $spacing-1;
+  margin-bottom: $spacing-2;
+}
 
-    @include dark-mode {
-      color: var(--tooltip-code-color-dark, #{$white});
-    }
+.paintCode {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  color: var(--tooltip-code-color, #{$gray-800});
+  margin-bottom: $spacing-1;
+
+  @include dark-mode {
+    color: var(--tooltip-code-color-dark, #{$white});
   }
+}
 
-  .paintName {
-    font-size: $font-size-sm;
-    color: var(--tooltip-name-color, #{$gray-600});
-    font-weight: $font-weight-medium;
+.paintName {
+  font-size: $font-size-sm;
+  color: var(--tooltip-name-color, #{$gray-600});
+  line-height: 1.3;
 
-    @include dark-mode {
-      color: var(--tooltip-name-color-dark, #{$gray-300});
-    }
+  @include dark-mode {
+    color: var(--tooltip-name-color-dark, #{$gray-300});
+  }
+}
+
+// Color values section
+.tooltipColorValues {
+  border-top: 1px solid var(--tooltip-divider, #{$gray-200});
+  padding-top: $spacing-2;
+  margin-top: $spacing-2;
+
+  @include dark-mode {
+    border-top-color: var(--tooltip-divider-dark, #{$gray-600});
+  }
+}
+
+.colorValue {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-1;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.colorValueLabel {
+  font-size: $font-size-xs;
+  color: var(--tooltip-value-label-color, #{$gray-500});
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  @include dark-mode {
+    color: var(--tooltip-value-label-color-dark, #{$gray-400});
+  }
+}
+
+.colorValueText {
+  font-size: $font-size-xs;
+  color: var(--tooltip-value-text-color, #{$gray-700});
+  font-family: monospace;
+
+  @include dark-mode {
+    color: var(--tooltip-value-text-color-dark, #{$gray-200});
   }
 }

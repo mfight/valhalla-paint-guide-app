@@ -62,3 +62,103 @@
     color: var(--hint-color-dark, #{$gray-400});
   }
 }
+
+.mapContainer {
+  background-color: var(--map-container-bg, #{$white});
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid var(--map-container-border, #{$gray-200});
+  margin-bottom: $spacing-4;
+
+  @include dark-mode {
+    background-color: var(--map-container-bg-dark, #{$gray-800});
+    border-color: var(--map-container-border-dark, #{$gray-700});
+  }
+}
+
+.mapHeader {
+  padding: $spacing-4;
+  border-bottom: 1px solid var(--map-header-border, #{$gray-200});
+
+  @include dark-mode {
+    border-bottom-color: var(--map-header-border-dark, #{$gray-700});
+  }
+}
+
+.mapTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: var(--map-title-color, #{$gray-800});
+
+  @include dark-mode {
+    color: var(--map-title-color-dark, #{$white});
+  }
+}
+
+.mapSubtitle {
+  font-size: $font-size-sm;
+  color: var(--map-subtitle-color, #{$gray-600});
+
+  @include dark-mode {
+    color: var(--map-subtitle-color-dark, #{$gray-300});
+  }
+}
+
+// Unit details header styles
+.unitDetailHeader {
+  padding: $spacing-4;
+  background-color: var(--unit-header-bg, #{$white});
+  border-bottom: 1px solid var(--unit-header-border, #{$gray-200});
+  
+  @include dark-mode {
+    background-color: var(--unit-header-bg-dark, #{$gray-800});
+    border-bottom-color: var(--unit-header-border-dark, #{$gray-700});
+  }
+}
+
+.unitDetailTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: var(--unit-title-color, #{$gray-800});
+  
+  @include dark-mode {
+    color: var(--unit-title-color-dark, #{$white});
+  }
+}
+
+.unitDetailSubtitle {
+  color: var(--unit-subtitle-color, #{$gray-600});
+  
+  @include dark-mode {
+    color: var(--unit-subtitle-color-dark, #{$gray-300});
+  }
+}
+
+// Paint code section styles
+.paintCodeSection {
+  padding: $spacing-4;
+  border-top: 1px solid var(--paint-section-border, #{$gray-200});
+  
+  @include dark-mode {
+    border-top-color: var(--paint-section-border-dark, #{$gray-700});
+  }
+}
+
+.paintCodeTitle {
+  font-weight: $font-weight-semibold;
+  color: var(--paint-title-color, #{$gray-800});
+  margin-bottom: $spacing-2;
+  
+  @include dark-mode {
+    color: var(--paint-title-color-dark, #{$white});
+  }
+}
+
+.paintCodeDescription {
+  color: var(--paint-description-color, #{$gray-700});
+  font-size: $font-size-sm;
+  
+  @include dark-mode {
+    color: var(--paint-description-color-dark, #{$gray-300});
+  }
+}

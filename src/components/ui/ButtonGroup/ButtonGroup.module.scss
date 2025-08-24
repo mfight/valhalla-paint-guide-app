@@ -1,0 +1,143 @@
+// components/ui/ButtonGroup/ButtonGroup.module.scss
+
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+// Base button group styles
+.buttonGroup {
+  display: flex;
+  align-items: center;
+
+  &.fullWidth {
+    width: 100%;
+
+    .section {
+      flex: 1;
+    }
+  }
+}
+
+// Orientation styles
+.horizontal {
+  flex-direction: row;
+
+  // On mobile, switch to vertical if responsive reverse is enabled
+  &.responsiveReverse {
+    @include mobile {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+  }
+
+  // Normal mobile behavior (no reverse)
+  &:not(.responsiveReverse) {
+    @include mobile {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: stretch;
+
+  &.responsiveReverse {
+    flex-direction: column-reverse;
+  }
+}
+
+// Section justify options
+.justifySpaceBetween {
+  justify-content: space-between;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifySpaceAround {
+  justify-content: space-around;
+}
+
+// Section styles (individual button containers)
+.section {
+  display: flex;
+  align-items: center;
+
+  // Horizontal sections have horizontal button layout
+  .horizontal & {
+    flex-direction: row;
+  }
+
+  // Vertical sections have vertical button layout
+  .vertical & {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  // On mobile, sections in horizontal groups become vertical
+  .horizontal & {
+    @include mobile {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+  }
+}
+
+// Spacing within sections (between buttons in the same section)
+.spacingNone {
+  gap: 0;
+}
+
+.spacingXs {
+  gap: var(--button-group-spacing-xs, #{$spacing-1}); // 4px
+}
+
+.spacingSm {
+  gap: var(--button-group-spacing-sm, #{$spacing-2}); // 8px
+}
+
+.spacingMd {
+  gap: var(--button-group-spacing-md, #{$spacing-3}); // 12px
+}
+
+.spacingLg {
+  gap: var(--button-group-spacing-lg, #{$spacing-4}); // 16px
+}
+
+// Mobile-specific adjustments
+@include mobile {
+  .buttonGroup {
+    &.horizontal {
+      gap: var(
+        --button-group-mobile-section-gap,
+        #{$spacing-3}
+      ); // Gap between sections on mobile
+    }
+
+    // On mobile, buttons in sections should be full width
+    .section {
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@include reduced-motion {
+  .buttonGroup,
+  .section {
+    transition: none;
+  }
+}

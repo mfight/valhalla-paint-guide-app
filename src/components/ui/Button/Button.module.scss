@@ -18,14 +18,49 @@
     @include focus-ring(var(--button-focus-ring, #{$primary}));
   }
 
+  // Focus-visible for better keyboard navigation
+  @include focus-visible(var(--button-focus-ring, #{$primary}));
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
   }
 
+  // High contrast mode support
+  @include high-contrast {
+    border: 1px solid transparent;
+
+    &:focus {
+      border-color: var(--button-focus-ring, #{$primary});
+      box-shadow: none;
+    }
+
+    &:disabled {
+      opacity: 1;
+      color: GrayText;
+      background-color: ButtonFace;
+      border-color: GrayText;
+    }
+  }
+
+  // Reduced motion support
   @include reduced-motion {
     transition: none;
+  }
+
+  // Mobile responsiveness
+  @include mobile {
+    // Slightly larger touch targets on mobile
+    min-height: 2.75rem; // 44px minimum touch target
+
+    &.sizeXs {
+      min-height: 2rem; // 32px for xs on mobile
+    }
+
+    &.sizeSm {
+      min-height: 2.5rem; // 40px for sm on mobile
+    }
   }
 }
 
@@ -42,6 +77,18 @@
 
   &:active:not(:disabled) {
     background-color: var(--button-primary-active-bg, #{$primary-dark});
+  }
+
+  // High contrast mode
+  @include high-contrast {
+    background-color: ButtonText;
+    color: ButtonFace;
+    border-color: ButtonText;
+
+    &:hover:not(:disabled) {
+      background-color: HighlightText;
+      color: Highlight;
+    }
   }
 
   @include dark-mode {
@@ -68,6 +115,18 @@
 
   &:active:not(:disabled) {
     background-color: var(--button-secondary-active-bg, #{$gray-300});
+  }
+
+  // High contrast mode
+  @include high-contrast {
+    background-color: ButtonFace;
+    color: ButtonText;
+    border-color: ButtonText;
+
+    &:hover:not(:disabled) {
+      background-color: ButtonText;
+      color: ButtonFace;
+    }
   }
 
   @include dark-mode {
@@ -97,6 +156,18 @@
     background-color: var(--button-outline-active-bg, #{$primary-dark});
   }
 
+  // High contrast mode
+  @include high-contrast {
+    background-color: transparent;
+    color: ButtonText;
+    border-color: ButtonText;
+
+    &:hover:not(:disabled) {
+      background-color: ButtonText;
+      color: ButtonFace;
+    }
+  }
+
   @include dark-mode {
     color: var(--button-outline-text-dark, #{$blue-400});
     border-color: var(--button-outline-border-dark, #{$blue-400});
@@ -123,6 +194,18 @@
     background-color: var(--button-ghost-active-bg, #{$gray-200});
   }
 
+  // High contrast mode
+  @include high-contrast {
+    background-color: transparent;
+    color: ButtonText;
+
+    &:hover:not(:disabled) {
+      background-color: ButtonText;
+      color: ButtonFace;
+      border-color: ButtonText;
+    }
+  }
+
   @include dark-mode {
     color: var(--button-ghost-text-dark, #{$gray-300});
 
@@ -146,6 +229,18 @@
 
   &:active:not(:disabled) {
     background-color: var(--button-danger-active-bg, #b91c1c);
+  }
+
+  // High contrast mode
+  @include high-contrast {
+    background-color: ButtonText;
+    color: ButtonFace;
+    border-color: ButtonText;
+
+    &:hover:not(:disabled) {
+      background-color: HighlightText;
+      color: Highlight;
+    }
   }
 
   @include dark-mode {
@@ -176,6 +271,19 @@
 
   &:active:not(:disabled) {
     background-color: var(--button-icon-active-bg, #{$gray-200});
+  }
+
+  // High contrast mode
+  @include high-contrast {
+    background-color: transparent;
+    color: ButtonText;
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: ButtonText;
+      color: ButtonFace;
+      border-color: ButtonText;
+    }
   }
 
   @include dark-mode {
@@ -237,6 +345,12 @@
     min-width: 1rem;
     min-height: 1rem;
   }
+
+  // Mobile adjustments
+  @include mobile {
+    padding: var(--button-xs-mobile-padding, #{$spacing-1} #{$spacing-2});
+    font-size: $font-size-xs;
+  }
 }
 
 .sizeSm {
@@ -247,6 +361,12 @@
     padding: var(--button-icon-sm-padding, #{$spacing-1});
     min-width: 2rem;
     min-height: 2rem;
+  }
+
+  // Mobile adjustments
+  @include mobile {
+    padding: var(--button-sm-mobile-padding, #{$spacing-2} #{$spacing-3});
+    font-size: $font-size-sm;
   }
 }
 
@@ -259,6 +379,12 @@
     min-width: 2.5rem;
     min-height: 2.5rem;
   }
+
+  // Mobile adjustments
+  @include mobile {
+    padding: var(--button-md-mobile-padding, #{$spacing-3} #{$spacing-4});
+    font-size: $font-size-base;
+  }
 }
 
 .sizeLg {
@@ -270,6 +396,12 @@
     min-width: 3rem;
     min-height: 3rem;
   }
+
+  // Mobile adjustments
+  @include mobile {
+    padding: var(--button-lg-mobile-padding, #{$spacing-3} #{$spacing-5});
+    font-size: $font-size-base; // Slightly smaller font on mobile
+  }
 }
 
 .sizeXl {
@@ -280,6 +412,12 @@
     padding: var(--button-icon-xl-padding, #{$spacing-4});
     min-width: 3.5rem;
     min-height: 3.5rem;
+  }
+
+  // Mobile adjustments
+  @include mobile {
+    padding: var(--button-xl-mobile-padding, #{$spacing-4} #{$spacing-6});
+    font-size: $font-size-lg; // Smaller font on mobile
   }
 }
 

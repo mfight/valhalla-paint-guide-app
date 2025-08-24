@@ -1,17 +1,19 @@
-// components/ui/ColorSwatch/ColorSwatch.jsx - Updated to use Tooltip component
-import React, { memo, useCallback } from 'react';
+// components/ui/ColorSwatch/ColorSwatch.jsx - Future-proofed version
+import React, { memo, useCallback, useMemo } from 'react';
 import Tooltip from '../Tooltip';
 import styles from './ColorSwatch.module.scss';
 
 const ColorSwatch = memo(
   ({
-    paintInfo, // { code, name, color }
+    paintInfo, // Paint data object
     label, // Display label for tooltip
     size = 'medium', // 'small', 'medium', 'large', 'xlarge'
     shape = 'rounded', // 'square', 'rounded', 'circle'
     showTooltip = true, // Show hover tooltip
     tooltipPosition = 'top', // 'top', 'bottom', 'left', 'right', 'auto'
     brand = 'Sherwin-Williams', // Paint brand name
+    colorFormat = 'auto', // 'hex', 'rgb', 'color', 'auto' - which color property to use
+    showColorValues = false, // Show color values in tooltip (hex, rgb, etc.)
     onClick, // Click handler
     onHover, // Hover handler (external state)
     onLeave, // Leave handler (external state)
@@ -21,6 +23,66 @@ const ColorSwatch = memo(
     ariaLabel,
     ...props
   }) => {
+    // Smart color extraction - tries different properties in order
+    const getColorValue = useMemo(() => {
+      if (!paintInfo) return null;
+
+      if (colorFormat === 'auto') {
+        // Try in order of preference: hex, color, then rgb array
+        return (
+          paintInfo.hex ||
+          paintInfo.color ||
+          (paintInfo.rgb ? `rgb(${paintInfo.rgb.join(', ')})` : null)
+        );
+      }
+
+      switch (colorFormat) {
+        case 'hex':
+          return paintInfo.hex;
+        case 'color':
+          return paintInfo.color;
+        case 'rgb':
+          if (paintInfo.rgb && Array.isArray(paintInfo.rgb)) {
+            return `rgb(${paintInfo.rgb.join(', ')})`;
+          }
+          return paintInfo.rgb;
+        default:
+          return paintInfo[colorFormat] || paintInfo.hex || paintInfo.color;
+      }
+    }, [paintInfo, colorFormat]);
+
+    // Format color values for display in tooltip
+    const formatColorValues = useMemo(() => {
+      if (!paintInfo || !showColorValues) return null;
+
+      const values = [];
+
+      if (paintInfo.hex) {
+        values.push({ label: 'HEX', value: paintInfo.hex });
+      }
+
+      if (paintInfo.rgb && Array.isArray(paintInfo.rgb)) {
+        values.push({
+          label: 'RGB',
+          value: `${paintInfo.rgb[0]}, ${paintInfo.rgb[1]}, ${paintInfo.rgb[2]}`,
+        });
+      }
+
+      if (paintInfo.cmyk && Array.isArray(paintInfo.cmyk)) {
+        values.push({
+          label: 'CMYK',
+          value: `${paintInfo.cmyk[0]}%, ${paintInfo.cmyk[1]}%, ${paintInfo.cmyk[2]}%, ${paintInfo.cmyk[3]}%`,
+        });
+      }
+
+      // Backwards compatibility - if we have a 'color' property that's different from hex
+      if (paintInfo.color && paintInfo.color !== paintInfo.hex) {
+        values.push({ label: 'COLOR', value: paintInfo.color });
+      }
+
+      return values.length > 0 ? values : null;
+    }, [paintInfo, showColorValues]);
+
     const handleClick = useCallback(() => {
       if (disabled || !onClick) return;
       onClick(paintInfo);
@@ -62,7 +124,7 @@ const ColorSwatch = memo(
       .filter(Boolean)
       .join(' ');
 
-    if (!paintInfo) {
+    if (!paintInfo || !getColorValue) {
       return null;
     }
 
@@ -77,7 +139,7 @@ const ColorSwatch = memo(
 
         <div
           className={styles.tooltipSwatch}
-          style={{ backgroundColor: paintInfo.color }}
+          style={{ backgroundColor: getColorValue }}
           aria-hidden="true"
         />
 
@@ -88,23 +150,42 @@ const ColorSwatch = memo(
         )}
 
         <div className={styles.tooltipInfo}>
-          <div className={styles.paintCode}>{paintInfo.code}</div>
-          <div className={styles.paintName}>{paintInfo.name}</div>
+          {paintInfo.code && (
+            <div className={styles.paintCode}>{paintInfo.code}</div>
+          )}
+          {paintInfo.name && (
+            <div className={styles.paintName}>{paintInfo.name}</div>
+          )}
         </div>
+
+        {/* Color values section */}
+        {formatColorValues && (
+          <div className={styles.tooltipColorValues}>
+            {formatColorValues.map(({ label, value }) => (
+              <div key={label} className={styles.colorValue}>
+                <span className={styles.colorValueLabel}>{label}:</span>
+                <span className={styles.colorValueText}>{value}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
 
     const swatchElement = (
       <div
         className={swatchClasses}
-        style={{ backgroundColor: paintInfo.color }}
+        style={{ backgroundColor: getColorValue }}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
         tabIndex={onClick && !disabled ? 0 : -1}
         role={onClick ? 'button' : 'img'}
-        aria-label={ariaLabel || `${paintInfo.name} color swatch`}
+        aria-label={
+          ariaLabel ||
+          (paintInfo.name ? `${paintInfo.name} color swatch` : 'Color swatch')
+        }
         aria-disabled={disabled}
         {...props}
       />

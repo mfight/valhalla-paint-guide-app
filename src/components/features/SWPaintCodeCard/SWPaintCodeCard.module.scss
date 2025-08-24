@@ -11,27 +11,27 @@
   margin: -#{$spacing-2};
   border-radius: $radius-md;
   transition: $transition-base;
-  
+
   &:hover {
-	background-color: var(--sw-card-hover-bg, #{$gray-100});
+    background-color: var(--sw-card-hover-bg, #{$gray-100});
   }
-  
+
   @include dark-mode {
-	&:hover {
-	  background-color: var(--sw-card-hover-bg-dark, #{$gray-700});
-	}
+    &:hover {
+      background-color: var(--sw-card-hover-bg-dark, #{$gray-700});
+    }
   }
 }
 
 .colorSwatch {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: $radius-base;
   border: 1px solid var(--sw-swatch-border, #{$gray-300});
   flex-shrink: 0;
-  
+
   @include dark-mode {
-	border-color: var(--sw-swatch-border-dark, #{$gray-600});
+    border-color: var(--sw-swatch-border-dark, #{$gray-600});
   }
 }
 
@@ -41,20 +41,31 @@
 
 .paintCode {
   font-weight: $font-weight-bold;
-  font-size: $font-size-lg;
+  font-size: $font-size-base;
   color: var(--sw-code-color, #{$gray-800});
   margin: 0 0 $spacing-1 0;
-  
+
   @include dark-mode {
-	color: var(--sw-code-color-dark, #{$white});
+    color: var(--sw-code-color-dark, #{$white});
   }
 }
 
 .paintName {
   color: var(--sw-name-color, #{$gray-600});
+  font-size: $font-size-base;
   margin: 0;
-  
+
   @include dark-mode {
-	color: var(--sw-name-color-dark, #{$gray-300});
+    color: var(--sw-name-color-dark, #{$gray-300});
+  }
+}
+
+.paintSpecs {
+  color: var(--sw-specs-color, #{$gray-500});
+  font-size: $font-size-xs;
+  margin: 0;
+
+  @include dark-mode {
+    color: var(--sw-specs-color-dark, #{$gray-400});
   }
 }
