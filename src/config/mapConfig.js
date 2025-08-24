@@ -100,7 +100,7 @@ export const getTileConfig = (isDarkMode = false) => {
 // Helper to get all tiles for a specific theme (useful for settings UI later)
 export const getTilesByTheme = (theme) => {
   return Object.entries(TILE_PROVIDERS)
-    .filter(([key, config]) => config.theme === theme)
+    .filter(([, config]) => config.theme === theme)
     .reduce((acc, [key, config]) => ({ ...acc, [key]: config }), {});
 };
 

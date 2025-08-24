@@ -66,7 +66,7 @@ export const createBadgeMarkerWithTooltip = ({
   tooltipMaxWidth = 280,
   tooltipVariant = 'default',
   tooltipSize = 'medium',
-  onUnitSelect, // Unit selection handler
+  // onUnitSelect, // Unit selection handler
   // Badge marker props
   count,
   text,

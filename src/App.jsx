@@ -49,9 +49,7 @@ try {
     shadowUrl:
       'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
   });
-} catch (e) {
-  console.log('Leaflet not available, using fallback');
-}
+} catch (e) {}
 
 // Process building data into flat array of units
 const allUnits = buildingData.flatMap((building) => {
@@ -320,7 +318,6 @@ const NeighborhoodMap = memo(
               window.leafletMap = mapInstance;
             }}
             onError={() => {
-              console.error('Map failed to load');
               setMapError(true);
             }}
           >

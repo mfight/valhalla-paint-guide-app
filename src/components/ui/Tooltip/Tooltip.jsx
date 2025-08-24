@@ -104,7 +104,7 @@ const Tooltip = memo(
       if (position === 'auto') {
         const spaceTop = triggerRect.top;
         const spaceBottom = viewport.height - triggerRect.bottom;
-        const spaceLeft = triggerRect.left;
+        // const spaceLeft = triggerRect.left;
         const spaceRight = viewport.width - triggerRect.right;
 
         if (spaceTop >= tooltipHeight + offset && spaceTop >= spaceBottom) {
@@ -179,6 +179,15 @@ const Tooltip = memo(
             left: triggerRect.right + offset,
             top: triggerCenterY,
             transform: 'translateY(-50%)',
+          };
+          break;
+
+        default:
+          // Default to bottom positioning
+          style = {
+            left: triggerCenterX,
+            top: triggerRect.bottom + offset,
+            transform: 'translateX(-50%)',
           };
           break;
       }

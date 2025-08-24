@@ -63,7 +63,7 @@ export const createPinMarkerWithTooltip = ({
   tooltipMaxWidth = 280,
   tooltipVariant = 'default',
   tooltipSize = 'medium',
-  onUnitSelect, // Unit selection handler
+  // onUnitSelect, // Unit selection handler
   // Pin marker props
   badgeColor,
   borderColor,

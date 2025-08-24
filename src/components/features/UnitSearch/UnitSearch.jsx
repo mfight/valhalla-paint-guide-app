@@ -6,7 +6,7 @@ import SegmentedControl from '../../ui/SegmentedControl';
 
 const UnitSearch = ({
   units = [],
-  onUnitSelect,
+  // onUnitSelect,
   onFilteredUnitsChange,
   placeholder = 'Search by street address, building type, or color scheme...',
   showBuildingTypeFilter = true,

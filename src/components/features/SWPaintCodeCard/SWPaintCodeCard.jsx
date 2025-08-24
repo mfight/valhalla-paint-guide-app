@@ -17,7 +17,6 @@ const SWPaintCodeCard = memo(
     const paintInfo = getPaintByCode(paintCode);
 
     if (!paintInfo) {
-      console.warn(`Paint code ${paintCode} not found in database`);
       return null;
     }
 
