@@ -1,5 +1,5 @@
 // components/maps/LeafletTooltip.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Tooltip from '../ui/Tooltip';
 
 /**
@@ -14,9 +14,9 @@ const LeafletTooltip = ({
   size = 'medium',
   trigger = 'hover',
   disabled = false,
-  maxWidth = 280,
-  offset = 8,
-  className = '',
+  maxWidth,
+  offset,
+  className,
   onVisibilityChange,
   ...tooltipProps
 }) => {
@@ -36,25 +36,14 @@ const LeafletTooltip = ({
       }
 
       // Look for various Leaflet marker selectors
-      const selectors = [
-        '.leaflet-marker-icon',
-        '.custom-badge-marker',
-        '.custom-pin-marker',
-        '.leaflet-interactive',
-        '[role="button"]',
-        'div[style*="transform"]', // Leaflet often uses transform styles
-      ];
-
-      for (const selector of selectors) {
-        const markers = containerRef.current.querySelectorAll(selector);
-
-        if (markers.length > 0) {
-          const marker = markers[0]; // Take the first one
-          return marker;
-        }
-      }
-
-      return null;
+      const root = containerRef.current;
+      return (
+        root.querySelector('.leaflet-marker-icon') ||
+        root.querySelector('.leaflet-marker-pane img') ||
+        root.querySelector('[class*="leaflet-marker"]') ||
+        root.querySelector('img[alt*="marker" i]') ||
+        root.querySelector('img')
+      );
     };
 
     const startSearch = () => {
@@ -73,7 +62,6 @@ const LeafletTooltip = ({
         if (intervalId) {
           clearInterval(intervalId);
         }
-        return;
       }
     };
 
@@ -91,34 +79,39 @@ const LeafletTooltip = ({
         clearInterval(intervalId);
       }
     };
-  }, [children]); // Re-run when children change
+  }, [children, markerElement]); // Re-run when children or marker changes
 
-  const handleShow = () => {
-    if (!disabled) {
-      setIsVisible(true);
-      onVisibilityChange?.(true);
-    }
-  };
+  const handleShow = useCallback(() => {
+    if (disabled) return;
+    setIsVisible(true);
+    onVisibilityChange?.(true);
+  }, [disabled, onVisibilityChange]);
 
-  const handleHide = () => {
-    if (!disabled) {
-      setIsVisible(false);
-      onVisibilityChange?.(false);
-    }
-  };
+  const handleHide = useCallback(() => {
+    if (disabled) return;
+    setIsVisible(false);
+    onVisibilityChange?.(false);
+  }, [disabled, onVisibilityChange]);
 
-  const handleToggle = (e) => {
-    e.stopPropagation(); // Prevent map click
-    const newVisible = !isVisible;
-    setIsVisible(newVisible);
-    onVisibilityChange?.(newVisible);
-  };
+  const handleToggle = useCallback(
+    (e) => {
+      e.stopPropagation(); // Prevent map click
+      if (disabled) return;
+      setIsVisible((prev) => {
+        const next = !prev;
+        onVisibilityChange?.(next);
+        return next;
+      });
+    },
+    [disabled, onVisibilityChange]
+  );
 
   // Add event listeners to the marker element
   useEffect(() => {
     if (!markerElement) {
       return;
     }
+    if (disabled) return;
 
     if (trigger === 'hover') {
       markerElement.addEventListener('mouseenter', handleShow);
@@ -134,7 +127,7 @@ const LeafletTooltip = ({
         markerElement.removeEventListener('click', handleToggle);
       }
     };
-  }, [markerElement, trigger, disabled]);
+  }, [markerElement, trigger, disabled, handleShow, handleHide, handleToggle]);
 
   return (
     <>
