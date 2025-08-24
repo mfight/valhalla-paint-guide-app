@@ -34,9 +34,7 @@ const SWPaintCodeCard = memo(
         {...props}
       >
         <Card.Header>
-          <Card.Title className="font-medium text-gray-700 mb-2">
-            {label}
-          </Card.Title>
+          <Card.Title className={styles.paintCardTitle}>{label}</Card.Title>
         </Card.Header>
         <Card.Content>
           <div className={styles.paintCardContent}>

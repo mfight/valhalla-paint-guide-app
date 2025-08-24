@@ -39,6 +39,17 @@
   flex: 1;
 }
 
+.paintCardTitle {
+  font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  color: var(--sw-code-color, #{$gray-800});
+  margin: 0 0 $spacing-1 0;
+
+  @include dark-mode {
+    color: var(--sw-code-color-dark, #{$white});
+  }
+}
+
 .paintCode {
   font-weight: $font-weight-bold;
   font-size: $font-size-base;
