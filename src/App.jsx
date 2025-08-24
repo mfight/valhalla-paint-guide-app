@@ -295,17 +295,15 @@ const NeighborhoodMap = memo(
     return (
       <div className={styles.mapContainer}>
         <div className={styles.mapHeader}>
-          <div className="flex justify-between items-center">
-            <div>
-              <h2 className={styles.mapTitle}>Valhalla</h2>
-              <p className={styles.mapSubtitle}>Riverview, FL</p>
-            </div>
-
-            <BuildingTypeFilter
-              selectedType={selectedBuildingType}
-              onTypeSelect={onBuildingTypeSelect}
-            />
+          <div>
+            <h2 className={styles.mapTitle}>Valhalla</h2>
+            <p className={styles.mapSubtitle}>Riverview, FL</p>
           </div>
+
+          <BuildingTypeFilter
+            selectedType={selectedBuildingType}
+            onTypeSelect={onBuildingTypeSelect}
+          />
         </div>
 
         <div style={{ height: '480px', width: '100%' }}>

@@ -79,6 +79,15 @@
 .mapHeader {
   padding: $spacing-4;
   border-bottom: 1px solid var(--map-header-border, #{$gray-200});
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   @include dark-mode {
     border-bottom-color: var(--map-header-border-dark, #{$gray-700});
@@ -109,7 +118,7 @@
   padding: $spacing-4;
   background-color: var(--unit-header-bg, #{$white});
   border-bottom: 1px solid var(--unit-header-border, #{$gray-200});
-  
+
   @include dark-mode {
     background-color: var(--unit-header-bg-dark, #{$gray-800});
     border-bottom-color: var(--unit-header-border-dark, #{$gray-700});
@@ -120,7 +129,7 @@
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   color: var(--unit-title-color, #{$gray-800});
-  
+
   @include dark-mode {
     color: var(--unit-title-color-dark, #{$white});
   }
@@ -128,7 +137,7 @@
 
 .unitDetailSubtitle {
   color: var(--unit-subtitle-color, #{$gray-600});
-  
+
   @include dark-mode {
     color: var(--unit-subtitle-color-dark, #{$gray-300});
   }
@@ -138,7 +147,7 @@
 .paintCodeSection {
   padding: $spacing-4;
   border-top: 1px solid var(--paint-section-border, #{$gray-200});
-  
+
   @include dark-mode {
     border-top-color: var(--paint-section-border-dark, #{$gray-700});
   }
@@ -148,7 +157,7 @@
   font-weight: $font-weight-semibold;
   color: var(--paint-title-color, #{$gray-800});
   margin-bottom: $spacing-2;
-  
+
   @include dark-mode {
     color: var(--paint-title-color-dark, #{$white});
   }
@@ -157,7 +166,7 @@
 .paintCodeDescription {
   color: var(--paint-description-color, #{$gray-700});
   font-size: $font-size-sm;
-  
+
   @include dark-mode {
     color: var(--paint-description-color-dark, #{$gray-300});
   }
